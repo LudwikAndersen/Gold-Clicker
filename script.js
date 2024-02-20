@@ -375,8 +375,6 @@ function lvlUpgrade(i) {
         }
         numericalUnits();
     }
-    
-    
 }
 
 function lvl10Upgrade(i) {
@@ -438,8 +436,37 @@ let ascend = document.querySelector("#ascend");
 let incomeTimeout = null;
 let incomeInterval = null;
 let infoInterval = null;
-
+//let ascendClick = false;
+let previousCoinLevel;
+let previousBanknoteLevel;
+let previousGoldBarLevel;
+let previousBitCoinLevel;
+let ascendCount = 1;
+let neededCoinLevel = 50;
+let neededBanknoteLevel = 50;
+let neededGoldBarLevel = 50;
+let neededBitCoinLevel = 50;
+setInterval(() => {
+    previousCoinLevel = levels[0];
+    previousBanknoteLevel = levels[1];
+    previousGoldBarLevel = levels[2];
+    previousBitCoinLevel = levels[3];
+}, 1);
+coin.ascendGoldPerClick = 1;
+banknote.ascendGoldPerClick = 2;
+goldBar.ascendGoldPerClick = 3;
+bitCoin.ascendGoldPerClick = 4;
+coin.originalAscendGoldPerClick = 1;
+banknote.originalAscendGoldPerClick = 2;
+goldBar.originalAscendGoldPerClick = 3;
+bitCoin.originalAscendGoldPerClick = 4;
+coin.originalGoldPerClick = 1;
+banknote.originalGoldPerClick = 2;
+goldBar.originalGoldPerClick = 3;
+bitCoin.originalGoldPerClick = 4;
 $(ascend).on("click", function() {
+    ascendCount++;
+    //ascendClick = true;
     $(frames).css('display', 'none');
     isFunctionEnabled = false;
     resetGame();
@@ -453,6 +480,50 @@ $(ascend).on("click", function() {
         World.remove(engine.world, body);
     }
     clonedBodies = [];
+    if (previousCoinLevel >= neededCoinLevel) {
+        console.log("jest coin");
+            coin.powerBurst = coin.ascendGoldPerClick + coin.originalAscendGoldPerClick;
+            coin.goldPerClick = coin.ascendGoldPerClick + coin.originalAscendGoldPerClick;
+            coin.ascendGoldPerClick = coin.ascendGoldPerClick + coin.originalAscendGoldPerClick;
+            coin.originalGoldPerClick = coin.originalGoldPerClick + 1;
+            neededCoinLevel += 50;
+    } else {
+        coin.goldPerClick = coin.originalGoldPerClick;
+    }
+
+    if (previousBanknoteLevel >= neededBanknoteLevel) {
+        console.log("jest banknote");
+            banknote.powerBurst = banknote.ascendGoldPerClick + banknote.originalAscendGoldPerClick;
+            banknote.goldPerClick = banknote.ascendGoldPerClick + banknote.originalAscendGoldPerClick;
+            banknote.ascendGoldPerClick = banknote.ascendGoldPerClick + banknote.originalAscendGoldPerClick;
+            banknote.originalGoldPerClick = banknote.originalGoldPerClick + 2;
+            neededBanknoteLevel += 50;
+    } else {
+        banknote.goldPerClick = banknote.originalGoldPerClick;
+    }
+
+    if (previousGoldBarLevel >= neededGoldBarLevel) {
+        console.log("jest goldBar");
+            goldBar.powerBurst = goldBar.ascendGoldPerClick + goldBar.originalAscendGoldPerClick;
+            goldBar.goldPerClick = goldBar.ascendGoldPerClick + goldBar.originalAscendGoldPerClick;
+            goldBar.ascendGoldPerClick = goldBar.ascendGoldPerClick + goldBar.originalAscendGoldPerClick;
+            goldBar.originalGoldPerClick = goldBar.originalGoldPerClick + 3;
+            neededGoldBarLevel += 50;
+    } else {
+        goldBar.goldPerClick = goldBar.originalGoldPerClick;
+    }
+
+    if (previousBitCoinLevel >= neededBitCoinLevel) {
+        console.log("jest bitCoin");
+        bitCoin.powerBurst = bitCoin.ascendGoldPerClick + bitCoin.originalAscendGoldPerClick;
+        bitCoin.goldPerClick = bitCoin.ascendGoldPerClick + bitCoin.originalAscendGoldPerClick;
+        bitCoin.ascendGoldPerClick = bitCoin.ascendGoldPerClick + bitCoin.originalAscendGoldPerClick;
+        bitCoin.originalGoldPerClick = bitCoin.originalGoldPerClick + 4;
+        neededBitCoinLevel += 50;
+    } else {
+        bitCoin.goldPerClick = bitCoin.originalGoldPerClick;
+    }
+
 });
 
 $("#ascend").on("click", function() {
@@ -516,26 +587,11 @@ function resetGame() {
     skill3.style.boxShadow = "none";
     para.click();
     
-    coin.goldPerClick = 1;
-    banknote.goldPerClick = 2;
-    goldBar.goldPerClick = 3;
-    bitCoin.goldPerClick = 4;
-
-    
-    console.log(coin.powerBurst);
-    console.log(coin.goldPerClick);
+    overlay.style.display = 'none';
 
     for (let i = 0; i < coins.length; i++) {
-        coins[i].powerBurst = coins[i].powerBurst * 2;
-        coins[i].goldPerClick = coins[i].goldPerClick * 2;
-        console.log(coins[i].powerBurst);
-        console.log(coins[i].goldPerClick);
+        coins[i].disabled = false;
     }
-
-    overlay.style.display = 'none';
-        for (let i = 0; i < coins.length; i++) {
-            coins[i].disabled = false;
-        }
 }
 
 function ascendion() {
@@ -715,10 +771,10 @@ function dragEnd(i) {
                 $(clicker).removeClass('active');
                 $(clicker).css('background', 'url("img/clicker.png")');
             }
-        }, 50);
+        }, 250);
                 //$(coins[i]).toggleClass(coins[i]);
                 // $(clicker).toggleClass(coins[i]);
-    }, 100);
+    }, 500);
     
 
     if (flag2 == false && flag3 == true && clicker.parentNode != dump[i]) {
@@ -978,7 +1034,7 @@ function numericalUnits() {
 }
 
 function numericalUnits2(i) {
-    setInterval(() => {
+    function update() {
     if (coins[i].goldPerClick < 1000) {
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+coins[i].goldPerClick+"$ </span> per click");
     } else if (coins[i].goldPerClick >= 1000 && coins[i].goldPerClick < 100000) { //1
@@ -1000,11 +1056,13 @@ function numericalUnits2(i) {
     } else if (coins[i].goldPerClick >= 1000000000000000 && coins[i].goldPerClick < 100000000000000000) {
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000000).toFixed(3)+"T"+"$ </span> per click");
     }
-}, 10);
+    requestAnimationFrame(update);
+}
+update();
 }
 
 function numericalUnits3(i) {
-    setInterval(() => {
+    function update() {
         if (levels[i] == 1) {
             $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+lvls[i].cost+"$ </span>");
         } else if (Math.round(lvls[i].cost * 1.05) < 1000 && levels[i] > 1) {
@@ -1028,11 +1086,13 @@ function numericalUnits3(i) {
         } else if (Math.round(lvls[i].cost * 1.05) >= 1000000000000000) {
             $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000000000).toFixed(3)+"T"+"$ </span>");
         }
-    }, 10);
+        requestAnimationFrame(update);
+    }
+    update();
 }
 
 function numericalUnits4(i) {
-    setInterval(() => {
+    function update() {
         let count = 0;
         let a = lvls[i].cost;
         let b;
@@ -1099,7 +1159,9 @@ function numericalUnits4(i) {
                 }
             }
         }
-    }, 10);
+        requestAnimationFrame(update);
+    }
+    update();
 }
 
 for (let i = 0; i < lvlUps.length; i++) {
