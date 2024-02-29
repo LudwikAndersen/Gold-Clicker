@@ -442,10 +442,10 @@ let previousBanknoteLevel;
 let previousGoldBarLevel;
 let previousBitCoinLevel;
 let ascendCount = 1;
-let neededCoinLevel = 50;
-let neededBanknoteLevel = 50;
-let neededGoldBarLevel = 50;
-let neededBitCoinLevel = 50;
+let neededCoinLevel = 10;
+let neededBanknoteLevel = 10;
+let neededGoldBarLevel = 10;
+let neededBitCoinLevel = 10;
 setInterval(() => {
     previousCoinLevel = levels[0];
     previousBanknoteLevel = levels[1];
@@ -464,7 +464,12 @@ coin.originalGoldPerClick = 1;
 banknote.originalGoldPerClick = 2;
 goldBar.originalGoldPerClick = 3;
 bitCoin.originalGoldPerClick = 4;
-$(ascend).on("click", function() {
+coin.test = 1;
+let ascendPoints = 0;
+//let ascendClicked = false;
+
+$(ascend).on("click", function(event) {
+    //ascendClicked = true;
     ascendCount++;
     //ascendClick = true;
     $(frames).css('display', 'none');
@@ -486,7 +491,9 @@ $(ascend).on("click", function() {
             coin.goldPerClick = coin.ascendGoldPerClick + coin.originalAscendGoldPerClick;
             coin.ascendGoldPerClick = coin.ascendGoldPerClick + coin.originalAscendGoldPerClick;
             coin.originalGoldPerClick = coin.originalGoldPerClick + 1;
-            neededCoinLevel += 50;
+            neededCoinLevel += 10;
+            ascendPoints++;
+            $(".ascendPoints").html("You have <span style='color:blue'>"+ascendPoints+" ascend points</span> Use them carefully!");
     } else {
         coin.goldPerClick = coin.originalGoldPerClick;
     }
@@ -497,7 +504,9 @@ $(ascend).on("click", function() {
             banknote.goldPerClick = banknote.ascendGoldPerClick + banknote.originalAscendGoldPerClick;
             banknote.ascendGoldPerClick = banknote.ascendGoldPerClick + banknote.originalAscendGoldPerClick;
             banknote.originalGoldPerClick = banknote.originalGoldPerClick + 2;
-            neededBanknoteLevel += 50;
+            neededBanknoteLevel += 10;
+            ascendPoints++;
+            $(".ascendPoints").html("You have <span style='color:blue'>"+ascendPoints+" ascend points</span> Use them carefully!");
     } else {
         banknote.goldPerClick = banknote.originalGoldPerClick;
     }
@@ -508,7 +517,9 @@ $(ascend).on("click", function() {
             goldBar.goldPerClick = goldBar.ascendGoldPerClick + goldBar.originalAscendGoldPerClick;
             goldBar.ascendGoldPerClick = goldBar.ascendGoldPerClick + goldBar.originalAscendGoldPerClick;
             goldBar.originalGoldPerClick = goldBar.originalGoldPerClick + 3;
-            neededGoldBarLevel += 50;
+            neededGoldBarLevel += 10;
+            ascendPoints++;
+            $(".ascendPoints").html("You have <span style='color:blue'>"+ascendPoints+" ascend points</span> Use them carefully!");
     } else {
         goldBar.goldPerClick = goldBar.originalGoldPerClick;
     }
@@ -519,11 +530,12 @@ $(ascend).on("click", function() {
         bitCoin.goldPerClick = bitCoin.ascendGoldPerClick + bitCoin.originalAscendGoldPerClick;
         bitCoin.ascendGoldPerClick = bitCoin.ascendGoldPerClick + bitCoin.originalAscendGoldPerClick;
         bitCoin.originalGoldPerClick = bitCoin.originalGoldPerClick + 4;
-        neededBitCoinLevel += 50;
+        neededBitCoinLevel += 10;
+        ascendPoints++;
+        $(".ascendPoints").html("You have <span style='color:blue'>"+ascendPoints+" ascend points</span> Use them carefully!");
     } else {
         bitCoin.goldPerClick = bitCoin.originalGoldPerClick;
     }
-
 });
 
 $("#ascend").on("click", function() {
@@ -557,6 +569,8 @@ function clearAll() {
         }
     }
 }
+let ascendPower = document.getElementById("ascendPower");
+
 function resetGame() {
     lvl1.cost = 10;
     lvl2.cost = 20;
@@ -592,6 +606,30 @@ function resetGame() {
     for (let i = 0; i < coins.length; i++) {
         coins[i].disabled = false;
     }
+
+    $(".ascendPower").css("display", "block");
+    $(".awards").css("width", "120px");
+    $(".gold").css("width", "120px");
+    ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
+    ascendPower.addEventListener("click", function() {
+        left.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
+        gold.style.backgroundColor = "rgba(91, 77, 77, 0.8)";
+        ascendPower.style.backgroundColor = "";
+        achievementTable.style.display = "none";
+        ascendPower.style.borderLeft = "none";
+        ascendPower.style.borderBottom = "none";
+        awards.style.borderLeft = "2px solid black";
+        awards.style.borderRight = "2px solid black";
+        awards.style.borderBottom = "2px solid black";
+        gold.style.borderBottom = "2px solid black";
+        gold.style.borderRight = "2px solid black";
+        for (let i =0; i < coinsDivs.length; i++) {
+            coinsDivs[i].style.display = "none";
+        }
+        $(".ascendPoints").html("You have "+"<span style='color:blue'>"+ascendPoints+" ascend points"+"</span>"+" Use them carefully!");
+        $(".ascendTab").css("display", "block");
+    });
+    
 }
 
 function ascendion() {
@@ -602,6 +640,93 @@ function ascendion() {
     } 
 }
 
+let dragonLvl = 0;
+let dragonButton1 = document.querySelector(".dragonButton1");
+let dragon = document.querySelector(".dragonLvl");
+
+
+function goldDragonPower() {
+    coin.powerBurst += 1.5 * coin.powerBurst;
+    coin.ascendGoldPerClick += 1.5 * coin.ascendGoldPerClick;
+    coin.goldPerClick += 1.5 * coin.goldPerClick;
+    coin.originalGoldPerClick += 1.5 * coin.originalGoldPerClick;
+}
+
+function addAscendLvl() {
+    if (ascendPoints > 0) {
+        ascendPoints--;
+        dragonLvl++;
+        $(".points").html(dragonLvl);
+        
+        $(".ascendPoints").html("You have "+"<span style='color:blue'>"+ascendPoints+" ascend points"+"</span>"+" Use them carefully!");
+        if (coin.powerBurst >= 1 && coin.ascendGoldPerClick >= 1 && coin.goldPerClick >= 1 && coin.originalGoldPerClick >= 1) {
+            coin.powerBurst -= 1;
+            coin.ascendGoldPerClick -= 1;
+            coin.goldPerClick -= 1;
+            coin.originalGoldPerClick -= 1;
+            goldDragonPower();
+        } 
+        if (coin.powerBurst == 0 || coin.ascendGoldPerClick == 0 || coin.goldPerClick == 0 || coin.originalGoldPerClick == 0) {
+            coin.powerBurst = 1;
+            coin.ascendGoldPerClick = 1;
+            coin.goldPerClick = 1;
+            coin.originalGoldPerClick = 1;
+        }
+    }
+}
+
+dragonButton1.addEventListener("click", function() { addAscendLvl(); });
+
+function addAscend10Lvl() {
+    if (ascendPoints >= 2) {
+        let count = 0;
+        while (count < 2) {
+            if (typeof $(dragonButton1)[0] != "undefined") {
+                $(dragonButton1)[0].click();
+                count++;
+            }
+        }
+        //ascendPoints--;
+        //dragonLvl++;
+        //$(".points").html(dragonLvl);
+        //$(".ascendPoints").html("You have "+ascendPoints+" ascend points. Use them carefully!");
+    }
+}
+let dragonButton2 = document.querySelector(".dragonButton2");
+dragonButton2.addEventListener("click", function() { addAscend10Lvl(); });
+let closeFlag = false;
+let help = document.querySelector(".help");
+let divFromHelp = document.querySelector(".divFromHelp");
+help.addEventListener("click", function() {
+    if (closeFlag) {
+        divFromHelp.style.display = "none";
+        console.log(divFromHelp.style.display);
+        console.log(closeFlag);
+        closeFlag = false;
+    } else {
+        divFromHelp.style.display = "block";
+        console.log(divFromHelp.style.display);
+        console.log(closeFlag);
+        closeFlag = true;
+    }
+});   
+
+let close = document.querySelector(".close");
+
+close.addEventListener("click", function() {
+    divFromHelp.style.display = "none";
+    console.log(divFromHelp.style.display);
+});
+/*
+help.ondblclick = function() {
+    if (closeFlag == true) {
+        divFromHelp.style.display = "none";
+        console.log(divFromHelp.style.display);
+    }
+    
+    closeFlag = false;
+}
+*/
 function getIncome(nr) {
     isFunctionEnabled = true;
     console.log(isFunctionEnabled)
@@ -632,10 +757,6 @@ function getIncome(nr) {
             bonus[nr].remove(); 
             removedBonuses.push(nr);
     }
-}
-
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() { clickButton(i)});
 }
 
 let instance;
@@ -679,6 +800,10 @@ function clickButton(nr) {
             $(infoGoldGain).html("");
         }, "1000");
     }
+}
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() { clickButton(i)});
 }
 
 const para = document.createElement("div");
@@ -871,14 +996,20 @@ const left = document.getElementById("left");
 const coinsDivs = document.getElementsByClassName("coins");
 
 awards.addEventListener("click", function() {
+    $(".ascendTab").css("display", "none");
     left.style.backgroundColor = "rgba(140, 116, 116, 0.8)";
+    ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
     awards.style.borderLeft = "none";
+    awards.style.borderRight = "none";
     awards.style.borderBottom = "none";
-    if (left.style.backgroundColor == "rgba(140, 116, 116, 0.8)") {
+    if (left.style.backgroundColor == "rgba(140, 116, 116, 0.8)" || left.style.backgroundColor == "") {
         gold.style.backgroundColor = "rgba(91, 77, 77, 0.8)";
     }
     gold.style.borderBottom = "2px solid black";
     gold.style.borderRight = "2px solid black";
+    ascendPower.style.borderLeft = "2px solid black";
+    ascendPower.style.borderRight = "2px solid black";
+    ascendPower.style.borderBottom = "2px solid black";
     for (let i =0; i < coinsDivs.length; i++) {
         coinsDivs[i].style.display = "none";
     }
@@ -886,13 +1017,18 @@ awards.addEventListener("click", function() {
 });
 
 gold.addEventListener("click", function() {
+    $(".ascendTab").css("display", "none");
     left.style.backgroundColor = "rgba(91, 77, 77, 0.8)";
+    ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
     awards.style.borderLeft = "2px solid black";
+    awards.style.borderRight = "2px solid black";
     awards.style.borderBottom = "2px solid black";
     gold.style.backgroundColor = "";
     gold.style.borderBottom = "none";
     gold.style.borderRight = "none";
-
+    ascendPower.style.borderLeft = "2px solid black";
+    ascendPower.style.borderRight = "2px solid black";
+    ascendPower.style.borderBottom = "2px solid black";
     for (let i =0; i < coinsDivs.length; i++) {
         coinsDivs[i].style.display = "flex";
     }
@@ -911,9 +1047,9 @@ skill1.addEventListener("click", function() {
         let cooldown100 = setInterval(() => {
             cooldown1.value--;
             $(cooldown1).html(cooldown1.value);
-            $(tip1).html("Fortune - gives 100 gold."+"<br/><br/>"+"Cooldown: "+cooldown1.value+"s");
+            $(tip1).html("<span style='color:rgb(255, 255, 0);'>Fortune</span> - gives <span style='color:green'>100$</span>"+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>"+cooldown1.value+"s"+"</span>");
             if (cooldown1.value == 0) {
-                $(tip1).html("Fortune - gives 100 gold."+"<br/><br/>"+"Cooldown: "+"100"+"s");
+                $(tip1).html("<span style='color:rgb(255, 255, 0);'>Fortune</span> - gives <span style='color:green'>100$</span>"+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>100s</span>");
                 clearInterval(cooldown100);
                 skill1.style.opacity = "1";
                 $(cooldown1).html("");
@@ -936,9 +1072,9 @@ skill2.addEventListener("click", function() {
         cooldown100 = setInterval(() => {
             cooldown2.value--;
             $(cooldown2).html(cooldown2.value);
-            $(tip2).html("Double wealth - x2 your wealth."+"<br/><br/>"+"Cooldown: "+cooldown2.value+"s");
+            $(tip2).html("<span style='color:rgb(255, 255, 0);'>Double wealth</span> - x2 your wealth."+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>"+cooldown2.value+"s"+"</span>");
             if (cooldown2.value == 0) {
-                $(tip2).html("Double wealth - x2 your wealth."+"<br/><br/>"+"Cooldown: "+"100"+"s");
+                $(tip2).html("<span style='color:rgb(255, 255, 0);'>Double wealth</span> - x2 your wealth."+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>100s</span>");
                 clearInterval(cooldown100);
                 skill2.style.backgroundColor = "rgb(255, 255, 255)";
                 x2.style.opacity = "1";
@@ -973,7 +1109,7 @@ skill3.addEventListener("click", function() {
         
         cooldown100v2 = setInterval(() => {
             cooldown3v2--;
-            $(tip3).html("Double power - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+cooldown3.value+"s"+"<br/><br/>"+"Time remaining: "+cooldown3v2+"s");
+            $(tip3).html("<span style='color:rgb(255, 255, 0);'>Double power</span> - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>"+cooldown3.value+"s"+"</span>"+"<br/><br/>"+"Time remaining: "+"<span style='color:rgb(77, 76, 76);'>"+cooldown3v2+"s"+"</span>");
             
             if (cooldown3v2 <= 0) {
                 for (let i = 0; i < coins.length; i++) {
@@ -990,14 +1126,14 @@ skill3.addEventListener("click", function() {
         
         let cooldown100 = setInterval(() => {
             if (cooldown3v2 == 0) {
-                $(tip3).html("Double power - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+cooldown3.value+"s"+"<br/><br/>"+"Duration: "+"60s");
+                $(tip3).html("<span style='color:rgb(255, 255, 0);'>Double power</span> - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>"+cooldown3.value+"s"+"</span>"+"<br/><br/>"+"Duration: "+"<span style='color:rgb(77, 76, 76);'>60s</span>");
                 skill3.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
             }
             
             cooldown3.value--;
             $(cooldown3).html(cooldown3.value);
             if (cooldown3.value == 0) {
-                $(tip3).html("Double power - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+"100"+"s"+"<br/><br/>"+"Duration: "+"60s");
+                $(tip3).html("<span style='color:rgb(255, 255, 0);'>Double power</span> - x2 coins per click for 60 seconds."+"<br/><br/>"+"Cooldown: "+"<span style='color:rgb(77, 76, 76);'>100s</span>"+"<br/><br/>"+"Duration: "+"<span style='color:rgb(77, 76, 76);'>60s</span>");
                 clearInterval(cooldown100);
                 skill3.style.backgroundColor = "rgb(255, 255, 255)";
                 doublePower.style.opacity = "1";
@@ -1036,7 +1172,7 @@ function numericalUnits() {
 function numericalUnits2(i) {
     function update() {
     if (coins[i].goldPerClick < 1000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+coins[i].goldPerClick+"$ </span> per click");
+        $(text[i]).html('<span style="color: rgb(255, 255, 0);">'+names[i]+'</span>'+" - <span style='color:green;'>"+coins[i].goldPerClick+"$ </span> per click");
     } else if (coins[i].goldPerClick >= 1000 && coins[i].goldPerClick < 100000) { //1
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000).toFixed(3)+"$ </span> per click"); 
     }  else if (coins[i].goldPerClick >= 100000 && coins[i].goldPerClick < 1000000) {
@@ -1053,7 +1189,7 @@ function numericalUnits2(i) {
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000).toFixed(3)+"B"+"$ </span> per click");
     } else if (coins[i].goldPerClick >= 100000000000000 && coins[i].goldPerClick < 1000000000000000) {
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000).toFixed(0)+"T"+"$ </span> per click");
-    } else if (coins[i].goldPerClick >= 1000000000000000 && coins[i].goldPerClick < 100000000000000000) {
+    } else if (coins[i].goldPerClick >= 1000000000000000 && coins[i].goldPerClick < 100000000000000000n) {
         $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000000).toFixed(3)+"T"+"$ </span> per click");
     }
     requestAnimationFrame(update);

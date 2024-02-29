@@ -160,8 +160,107 @@ body {
     cursor: pointer;
     text-align: center;
     border-left: 2px solid black;
+    border-right: 2px solid black;
     border-bottom: 2px solid black;
     border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.ascendPower {
+    width: 120px;
+    cursor: pointer;
+    text-align: center;
+    display: none;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom-left-radius: 10px;
+}
+.ascendPoints {
+    text-align: center;
+    color: rgb(205, 180, 38);
+    margin-top: 2px;
+    width: 340px;
+    float: left;
+}
+
+.help {
+    color: black;
+    background-color: white;
+    width: 10px;
+    height: 18px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.divFromHelp {
+    position: absolute;
+    top: -25%;
+    width: 400px;
+    height: 100px;
+    display: none;
+    background-color: rgb(205, 180, 38);;
+    border: 4px double black;
+}
+
+.close img {
+    width: 20px;
+    height: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.floatStop {
+    clear: both;
+}
+
+.dragon {
+    background-color: #3a3636;
+    width: 360px;
+    height: 156px;
+}
+
+.ascendTab {
+    display: none;
+}
+
+.dragonImage {
+    float: left;
+}
+
+.dragonLvl p {
+    margin-left: 80px;
+}
+
+.dragonButton {
+    cursor: pointer;
+    float: left;
+    margin-top: 20px;
+    filter: brightness(90%);
+    font-size: 200%;
+    color: yellow;
+}
+
+.dragonButton1 {
+    margin-left: 50px;
+}
+
+.dragonButton2 {
+
+}
+
+.dragonButton:active {
+    color: rgb(198, 198, 106);
+}
+
+.dragonButton:hover {
+    filter: brightness(95%);
+}
+
+.dragonButton:active, .dragonButton.active {
+    cursor: pointer;
+    filter: brightness(100%);
 }
 
 .coin {
@@ -219,7 +318,7 @@ body {
     letter-spacing: 1px;
     box-shadow: #164b18 0px 7px 2px, #000 0px 8px 5px;
     width: 90px;
-    height: 32px;   
+    height: 32px;
     text-align: center;
     padding-top: 8px;
     cursor: pointer;
@@ -664,15 +763,87 @@ p.tooltip-text:before {
 }
 
 .piggyBank:hover p.tooltip-text {
-    margin-right: -130px;
-    margin-top: -5px;
+    margin-right: -113px;
+    margin-top: -20px;
     visibility: visible;
     opacity: 1;
 }
 
 .wallet:hover p.tooltip-text {
-    margin-right: -130px;
-    margin-top: -15px;
+    margin-right: -110px;
+    margin-top: -25px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.dragonButtonx1 p.tooltip-text {
+    position: absolute;
+    top: -200%;
+    left: 77%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+    background: #9c9944;
+    padding: 8px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2px;
+    animation: fadeIn 0.6s;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border: 8px double black;
+}
+
+.dragonButtonx1:hover p.tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dragonButton10 p.tooltip-text {
+    position: absolute;
+    top: -200%;
+    left: 45%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+    background: #9c9944;
+    padding: 8px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2px;
+    animation: fadeIn 0.6s;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border: 8px double black;
+}
+
+.dragonButton10:hover p.tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dragonImage p.tooltip-text {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+    background: #9c9944;
+    padding: 8px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2px;
+    animation: fadeIn 0.6s;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border: 8px double black;
+}
+
+.dragonImage:hover p.tooltip-text {
     visibility: visible;
     opacity: 1;
 }
