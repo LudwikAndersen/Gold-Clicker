@@ -1,2 +1,6 @@
 bugi:
 wyśrodkowanie myszki na lvlupsach i być może na coinsach
+
+do zrobienia:
+zdobyć więcej wiedzy w zakresie MutationObserver i canvas oraz Matter.js
+wystylizowanie przycisków save i load, ulepszenie menu gry

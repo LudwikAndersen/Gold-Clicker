@@ -246,10 +246,6 @@ body {
     margin-left: 50px;
 }
 
-.dragonButton2 {
-
-}
-
 .dragonButton:active {
     color: rgb(198, 198, 106);
 }
@@ -945,3 +941,129 @@ p.tooltip-text:before {
     background-repeat: no-repeat;
 }
 
+.start {
+    width: 150px;
+    height: 100px;
+    background-color:rgb(130, 42, 42);
+    margin: auto;
+    margin-top: 250px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.start:hover {
+    filter: brightness(120%);
+}
+
+.start p {
+    text-align: center;
+    padding-top: 25%;
+    font-size: 22px;
+}
+
+.continue {
+    width: 150px;
+    height: 100px;
+    background-color:rgb(130, 42, 42);
+    margin: auto;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.continue:hover {
+    filter: brightness(120%);
+}
+
+.continue p {
+    text-align: center;
+    padding-top: 25%;
+    font-size: 22px;
+}
+.settings {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    margin-left: 900px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.windowOfSettings {
+    width: 500px;
+    height: 500px;
+    background-color:rgb(83, 83, 164);
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    z-index: 1;
+}
+
+.no-pointer {
+    pointer-events: none;
+}
+
+.pointer {
+    pointer-events: auto;
+}
+
+.closeSettings img {
+    width: 20px;
+    height: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.save {
+    width: 120px;
+    height: 40px;
+    background-color: #a39d9d;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.save:hover {
+    background: grey;
+}
+
+.save p {
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.load {
+    width: 120px;
+    height: 32px;
+    background-color: #989191;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.load:hover {
+    background: grey;
+}
+
+.quit {
+    width: 120px;
+    height: 32px;
+    background-color: #989191;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.quit:hover {
+    background: grey;
+}
