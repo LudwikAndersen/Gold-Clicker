@@ -18,187 +18,191 @@
             <div class="load">Load</div>
             <div class="quit">Quit</div>
         </div>
-        <div class="scorePlusinfo">
-            <div class="scoreTitle"><p>Coins:</p></div>
-            <div class="score"><p>0</p></div>
-            <p class="infoGoldGain"></p>
-            <div class="board">Coins per second: <span>0</span></div>
+        <div class="all">    
+            <section class="left" id="left">
+                <div class="menu">
+                    <div class="gold bar" id="gold">gold</div>
+                    <div class="awards bar" id="awards">awards</div>
+                    <div class="ascendPower bar" id="ascendPower">ascend</div>
+                </div>
+                <div class="ascendTab">
+                    <div class="ascendPoints">You have <span style='color:blue'><span id="ascendPoints"></span> ascend points</span> Use them carefully!</div>
+                    <div class="help" title="click for help">?</div>
+                    <div class="floatStop"></div>
+                    <div class="dragon">
+                        <diV class="dragonImage"><img src="img/dragon.png" alt="dragonImage"/>
+                            <p class="tooltip-text" id="dragonImagetext1"><span style="color:yellow">Gold dragon</span> - Gives +50% coin power.</p>
+                        </diV>
+                        <div class="dragonLvl"><p>lvl <span class="points">0</span></p></div>
+                        <div class="dragonButton dragonButtonx1">
+                            <p class="tooltip-text" id="dragontext1">x1 - costs <span style="color:blue">1 ap</span> </p>
+                            <i class="icon-angle-up dragonButton1"></i>
+                        </div>
+                        <div class="dragonButton dragonButton10">
+                            <p class="tooltip-text" id="dragon10text1">x10 - costs <span style="color:blue">10 ap</span></p>
+                            <i class="icon-angle-double-up dragonButton2"></i>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="achievementTable" id="achievementTable">
+                    <div class="achievement" id="achievement"><p>Achievement unlocked: <span>First 100 gold!</span> Reward: <span>50 gold!<button id="button1" class="button0" title="buttonAchievement">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement2"><p>Achievement unlocked: <span>First 1K gold</span><br>Reward: <span>500 gold!<button id="button2" class="button0" title="buttonAchievement2">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement3"><p>Achievement unlocked: <span>First 10K gold</span><br>Reward: <span>5K gold!<button id="button3" class="button0" title="buttonAchievement3">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement4"><p>Achievement unlocked: <span>First 100K gold</span><br>Reward: <span>50K gold!<button id="button4" class="button0" title="buttonAchievement4">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement5"><p>Achievement unlocked: <span>First 1M gold</span><br>Reward: <span>500K gold!<button id="button5" class="button0" title="buttonAchievement5">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement6"><p>Achievement unlocked: <span>First 10M gold</span><br>Reward: <span>5M gold!<button id="button6" class="button0" title="buttonAchievement6">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement7"><p>Achievement unlocked: <span>First 100M gold</span><br>Reward: <span>50M gold!<button id="button7" class="button0" title="buttonAchievement7">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement8"><p>Achievement unlocked: <span>First 1B gold</span><br>Reward: <span>500M gold!<button id="button8" class="button0" title="buttonAchievement8">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement9"><p>Achievement unlocked: <span>First 10B gold</span><br>Reward: <span>5B gold!<button id="button9" class="button0" title="buttonAchievement9">gain</button></span></p>
+                    </div>
+                    <div class="achievement" id="achievement10"><p>Achievement unlocked: <span>First 100B gold</span><br>Reward: <span>50B gold!<button id="button10" class="button0" title="buttonAchievement10">gain</button></span></p>
+                    </div>
+                </div>
+
+                <div class="coins" id="coins">
+                    <div class="frame0" id="frame0">
+                        <div class="moneyButtons">
+                            <p class="tooltip-text" id="text1"><span style="color: rgb(255, 255, 0);">Coin</span> - 1$ per click</p>
+                            <button class="coin money dropzone" data-level="1" id="coin" title="Coin"></button>
+                        </div>
+                        
+                        <p class="levels" id="lvl1">lvl 1</p>
+                        <div class="upgrade">
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvltext1"></p>
+                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp1"></i></p>
+                            </div>
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvl10text1"></p>
+                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp1"></i></p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="coins" id="coins">
+                    <div class="frame" id="frame1">
+                        <div class="moneyButtons">
+                            <p class="tooltip-text" id="text2">Banknote - 2$ per click</p>
+                            <button class="banknote money dropzone" data-level="1" id="banknote" title="Banknote">Banknote</button>
+                        </div>
+                        <p class="levels" id="lvl2">lvl 1</p>
+                        <div class="upgrade">
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvltext2"></p>
+                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp2"></i></p>
+                            </div>
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvl10text2"></p>
+                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp2"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="coins" id="coins">
+                    <div class="frame" id="frame2">
+                        <div class="moneyButtons">
+                            <p class="tooltip-text" id="text3">Gold Bar - 3$ per click</p>
+                            <button class="goldBar money dropzone" data-level="1" id="goldBar" title="goldBar">Gold Bar</button>
+                        </div>
+                        <p class="levels" id="lvl3">lvl 1</p>
+                        <div class="upgrade">
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvltext3"></p>
+                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp3"></i></p>
+                            </div>
+                                <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvl10text3"></p>
+                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp3"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="coins" id="coins">
+                    <div class="frame" id="frame3">
+                        <div class="moneyButtons">
+                            <p class="tooltip-text" id="text4">Bitcoin - 4$ per click</p>
+                            <button class="bitCoin money dropzone" data-level="1" id="bitCoin" title="bitCoin">B</button>
+                        </div>
+                        <p class="levels" id="lvl4">lvl 1</p>
+                        <div class="upgrade">
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvltext4"></p>
+                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp4"></i></p>
+                            </div>
+                            <div class="cloudsLvlUps">
+                                <p class="tooltip-text" id="lvl10text4"></p>
+                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp4"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="skillBar">
+                <div class="skill" id="skill1v0"><img id="skill1" src="img/monety.jfif" alt="skill1"/>
+                    <p class="tooltip-text" id="tip1"><span style="color: rgb(255, 255, 0);">Fortune</span> - gives <span style="color:green">100$</span> <br/><br/> Cooldown: <span id="100sec1" style="color: rgb(77, 76, 76);">100s</span></p>
+                    <div><p class="cooldown1"></p></div>
+                </div>
+                <div class="skill" id="skill2"><p class="x2">x2</p>
+                    <p class="tooltip-text" id="tip2"><span style="color: rgb(255, 255, 0);">Double wealth</span> - x2 your wealth. <br/><br/> Cooldown: <span id="100sec2" style="color: rgb(77, 76, 76);">100s</span></p>
+                    <p class="cooldown2"></p>
+                </div>
+                <div class="skill" id="skill3"><p id="doublePower">Double power</p>
+                    <p class="tooltip-text" id="tip3"><span style="color: rgb(255, 255, 0);">Double power</span> - x2 coins per click for 60 seconds. <br/><br/> Cooldown: <span id="100sec" style="color: rgb(77, 76, 76);">100s</span> <br/><br/> <span id="duration">Duration:</span> <span id="60sec" style="color: rgb(77, 76, 76);">60s</span></p>
+                    <p class="cooldown3"></p>
+                </div>
+            </section>
+            <div class="midPlusScore">
+            <div class="scorePlusinfo">
+                <div class="scoreContainer">
+                    <div class="scoreTitle"><p>Coins:</p></div>
+                    <div class="score"><p>0</p></div>
+                    <p class="infoGoldGain"></p>
+                </div>
+                <div class="board">Coins per second: <span>0</span></div>
+            </div>
+            <section class="mid" id="mid">
+                <canvas id="canvas1"></canvas>
+                <div class="divFromHelp">
+                    <div class="close"><img src="img/close.png" alt=""></div>
+                    <p>Every ascend point increaes power of the income bars, by a percentage depending of it's upgrade level. If you spend that points on dragon, you lose 50% coin power.</p>
+                </div>
+                <div id="overlay">
+                    <p id="overlay-text">KONTENER PEŁNY!</p><p>You can't use the buttons until you've made room in the container by using your money. You can also ascend the world. Each button needs 50 lvl, to get extra power. </p>
+                    <div id="ascend">Ascend</div>
+                </div>
+            </section>
+            </div>
             <div class="dropzone zone" id="zone">
                 <div class="material-symbols-outlined clicks" id="clicker"></div>
                 <div class="material-symbols-outlined" id="clickerShadow"></div>
             </div>
-            <div class="settings"></div>
+            <div class="settingsPlusRight">
+                <div class="settings">Settings</div>
+                <section class="right">
+                <div class="wallet idle" id="wallet">
+                    <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Wallet</span><br> gives <span style="color:gold">+1cps</span><br>costs <span style="color:green">150$</span></p>
+                </div>
+                <div class="piggyBank idle" id="piggyBank">
+                    <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Piggy bank</span><br> gives <span style="color:gold">+2cps</span><br>costs <span style="color:green">350$</span></p>
+                </div>
+                </section>
+            </div>    
         </div>
-    <div class="all">    
-        <section class="left" id="left">
-            <div class="menu">
-                <div class="gold bar" id="gold">gold</div>
-                <div class="awards bar" id="awards">awards</div>
-                <div class="ascendPower bar" id="ascendPower">ascendPower</div>
-            </div>
-            <div class="ascendTab">
-                <div class="ascendPoints">You have <span style='color:blue'><span id="ascendPoints"></span> ascend points</span> Use them carefully!</div>
-                <div class="help" title="click for help">?</div>
-                <div class="floatStop"></div>
-                <div class="dragon">
-                    <diV class="dragonImage"><img src="img/dragon.png" alt="dragonImage"/>
-                        <p class="tooltip-text" id="dragonImagetext1"><span style="color:yellow">Gold dragon</span> - Gives +50% coin power.</p>
-                    </diV>
-                    <div class="dragonLvl"><p>lvl <span class="points">0</span></p></div>
-                    <div class="dragonButton dragonButtonx1">
-                        <p class="tooltip-text" id="dragontext1">x1 - costs <span style="color:blue">1 ap</span> </p>
-                        <i class="icon-angle-up dragonButton1"></i>
-                    </div>
-                    <div class="dragonButton dragonButton10">
-                        <p class="tooltip-text" id="dragon10text1">x10 - costs <span style="color:blue">10 ap</span></p>
-                        <i class="icon-angle-double-up dragonButton2"></i>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="achievementTable" id="achievementTable">
-                <div class="achievement" id="achievement">Achievement unlocked: <span>First 100 gold</span><br>Reward: <span>50 gold!<button id="button1" class="button0" title="buttonAchievement">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement2">Achievement unlocked: <span>First 1K gold</span><br>Reward: <span>500 gold!<button id="button2" class="button0" title="buttonAchievement2">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement3">Achievement unlocked: <span>First 10K gold</span><br>Reward: <span>5K gold!<button id="button3" class="button0" title="buttonAchievement3">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement4">Achievement unlocked: <span>First 100K gold</span><br>Reward: <span>50K gold!<button id="button4" class="button0" title="buttonAchievement4">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement5">Achievement unlocked: <span>First 1M gold</span><br>Reward: <span>500K gold!<button id="button5" class="button0" title="buttonAchievement5">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement6">Achievement unlocked: <span>First 10M gold</span><br>Reward: <span>5M gold!<button id="button6" class="button0" title="buttonAchievement6">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement7">Achievement unlocked: <span>First 100M gold</span><br>Reward: <span>50M gold!<button id="button7" class="button0" title="buttonAchievement7">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement8">Achievement unlocked: <span>First 1B gold</span><br>Reward: <span>500M gold!<button id="button8" class="button0" title="buttonAchievement8">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement9">Achievement unlocked: <span>First 10B gold</span><br>Reward: <span>5B gold!<button id="button9" class="button0" title="buttonAchievement9">gain</button></span>
-                </div>
-                <div class="achievement" id="achievement10">Achievement unlocked: <span>First 100B gold</span><br>Reward: <span>50B gold!<button id="button10" class="button0" title="buttonAchievement10">gain</button></span>
-                </div>
-            </div>
-
-            <div class="coins" id="coins">
-                <div class="frame0" id="frame0">
-                    <div class="moneyButtons">
-                        <p class="tooltip-text" id="text1"><span style="color: rgb(255, 255, 0);">Coin</span> - 1$ per click</p>
-                        <button class="coin money dropzone" data-level="1" id="coin" title="Coin"></button>
-                    </div>
-                    <p class="levels" id="lvl1">lvl 1</p>
-                    <div class="upgrade">
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvltext1"></p>
-                            <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp1"></i></p>
-                        </div>
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvl10text1"></p>
-                            <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp1"></i></p>
-                        </div>
-                    </div>
-                
-                </div>
-            </div>
-            <div class="coins" id="coins">
-                <div class="frame" id="frame1">
-                    <div class="moneyButtons">
-                        <p class="tooltip-text" id="text2">Banknote - 2$ per click</p>
-                        <button class="banknote money dropzone" data-level="1" id="banknote" title="Banknote">Banknote</button>
-                    </div>
-                    <p class="levels" id="lvl2">lvl 1</p>
-                    <div class="upgrade">
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvltext2"></p>
-                            <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp2"></i></p>
-                        </div>
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvl10text2"></p>
-                            <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp2"></i></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="coins" id="coins">
-                <div class="frame" id="frame2">
-                    <div class="moneyButtons">
-                        <p class="tooltip-text" id="text3">Gold Bar - 3$ per click</p>
-                        <button class="goldBar money dropzone" data-level="1" id="goldBar" title="goldBar">Gold Bar</button>
-                    </div>
-                    <p class="levels" id="lvl3">lvl 1</p>
-                    <div class="upgrade">
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvltext3"></p>
-                            <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp3"></i></p>
-                        </div>
-                            <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvl10text3"></p>
-                            <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp3"></i></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="coins" id="coins">
-                <div class="frame" id="frame3">
-                    <div class="moneyButtons">
-                        <p class="tooltip-text" id="text4">Bitcoin - 4$ per click</p>
-                        <button class="bitCoin money dropzone" data-level="1" id="bitCoin" title="bitCoin">B</button>
-                    </div>
-                    <p class="levels" id="lvl4">lvl 1</p>
-                    <div class="upgrade">
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvltext4"></p>
-                            <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp4"></i></p>
-                        </div>
-                        <div class="cloudsLvlUps">
-                            <p class="tooltip-text" id="lvl10text4"></p>
-                            <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp4"></i></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="skillBar">
-            <div class="skill" id="skill1v0"><img id="skill1" src="img/monety.jfif" alt="skill1"/>
-                <p class="tooltip-text" id="tip1"><span style="color: rgb(255, 255, 0);">Fortune</span> - gives <span style="color:green">100$</span> <br/><br/> Cooldown: <span id="100sec1" style="color: rgb(77, 76, 76);">100s</span></p>
-                <p class="cooldown1"></p>
-            </div>
-            <div class="skill" id="skill2"><p class="x2">x2</p>
-                <p class="tooltip-text" id="tip2"><span style="color: rgb(255, 255, 0);">Double wealth</span> - x2 your wealth. <br/><br/> Cooldown: <span id="100sec2" style="color: rgb(77, 76, 76);">100s</span></p>
-                <p class="cooldown2"></p>
-            </div>
-            <div class="skill" id="skill3"><p id="doublePower">Double power</p>
-                <p class="tooltip-text" id="tip3"><span style="color: rgb(255, 255, 0);">Double power</span> - x2 coins per click for 60 seconds. <br/><br/> Cooldown: <span id="100sec" style="color: rgb(77, 76, 76);">100s</span> <br/><br/> <span id="duration">Duration:</span> <span id="60sec" style="color: rgb(77, 76, 76);">60s</span></p>
-                <p class="cooldown3"></p>
-            </div>
-        </section>
-        <section class="mid" id="mid">
-            <div class="divFromHelp">
-                <div class="close"><img src="img/close.png" alt=""></div>
-                <p>Every ascend point increaes power of the income bars, by a percentage depending of it's upgrade level. If you spend that points on dragon, you lose 50% coin power.</p>
-            </div>
-            <div id="overlay">
-                <p id="overlay-text">KONTENER PEŁNY!</p><p>You can't use the buttons until you've made room in the container by using your money. You can also ascend the world. Each button needs 50 lvl, to get extra power. </p>
-                
-            </div>
-            <div id="ascend">Ascend</div>
-            <!--<div class="rain" id="rain"></div>-->
-            <!--<div class="bottomMid" id="bottomMid"></div>-->
-        </section>
-        <section class="right">
-            <div class="wallet idle" id="wallet">
-                <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Wallet</span><br> gives <span style="color:gold">+1cps</span><br>costs <span style="color:green">150$</span></p>
-            </div>
-            
-            <div class="piggyBank idle" id="piggyBank">
-                <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Piggy bank</span><br> gives <span style="color:gold">+2cps</span><br>costs <span style="color:green">350$</span></p>
-            </div>
-        </section>
-    </div>
     </div>
 </body>
+
 <script src="matter.js"></script>
 <script src="jquery-3.7.0.min.js" type="text/javascript"></script>
 <script src="jquery-ui.min.js" type="text/javascript"></script>
 <script src="main.js" type="text/javascript" defer></script>
-
 </html>

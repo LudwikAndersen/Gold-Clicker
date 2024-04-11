@@ -68,7 +68,12 @@ const tip1 = document.querySelector("#tip1");
 const tip2 = document.querySelector("#tip2");
 const tip3 = document.querySelector("#tip3");
 let mid = document.querySelector(".mid");
-
+let body = document.querySelector("body");
+let container = document.getElementById("container");
+const awards = document.getElementById("awards");
+const gold = document.getElementById("gold");
+const left = document.getElementById("left");
+const coinsDivs = document.getElementsByClassName("coins");
 let lvlTexts = [lvlText1, lvlText2, lvlText3, lvlText4];
 let lvl10Texts = [lvl10Text1, lvl10Text2, lvl10Text3, lvl10Text4];
 
@@ -114,7 +119,7 @@ piggyBank.grey = "img/piggyBankGrey.jpg";
 wallet.white = "img/wallet.png";
 piggyBank.white = "img/piggyBank.jpg";
 
-coin.goldPerClick = 100;
+coin.goldPerClick = 100000;
 banknote.goldPerClick = 2;
 goldBar.goldPerClick = 3;
 bitCoin.goldPerClick = 4;
@@ -174,6 +179,13 @@ let piggybool;
 
 let save = document.querySelector(".save");
 let load = document.querySelector(".load");
+const canvas = document.getElementById("canvas1");
+let currentBody = null;
+let clonedBodies = [];
+console.log("just canvas");
+let aspectRatio = 16/9;
+let midWidth = mid.offsetWidth;
+let midHeight = mid.offsetHeight;
 
 // Inicjowanie silnika Matter.js
 const {
@@ -183,50 +195,93 @@ const {
     Bodies,
     Runner,
     Composite,
-    Bounds
+    Bounds,
+    Body
 } = Matter;
 
 const runner = Runner.create();
 const engine = Engine.create();
 engine.timing.timeScale = 1 / 3; // klony spadają dwa razy wolniej
 const render = Render.create({
-    element: document.getElementById('mid'),
+    canvas: document.getElementById("canvas1"),
     engine: engine,
     options: {
         wireframes: false,
         background: 'transparent',
-        width: 900,
-        height: 400
+        width: midWidth,
+        height: midHeight
     },
 });
 
-const containerWidth = 900;
-const containerHeight = 400;
 const containerRadius = 0;
-
-const binWidth = 20; // Szerokość "komórki" w naszej tablicy 2D
-const binHeight = 20; // Wysokość "komórki" w naszej tablicy 2D
-const binsX = Math.ceil(containerWidth / binWidth);
-const binsY = Math.ceil(containerHeight / binHeight);
+let wallSize = 20;
+let binWidth = 20; // Szerokość "komórki" w naszej tablicy 2D
+let binHeight = 20; // Wysokość "komórki" w naszej tablicy 2D
+const binsX = Math.ceil(midWidth / binWidth);
+const binsY = Math.ceil(midHeight / binHeight);
 const bins = Array.from({ length: binsX }, () => Array(binsY).fill(0));
 
 const createWall = (x, y, width, height) => Bodies.rectangle(x, y, width, height, { isStatic: true, chamfer: { radius: containerRadius } });
-const ground = createWall(containerWidth / 2, containerHeight, containerWidth, 20, /*, render: {
-    fillStyle: 'red'
-}*/ );
-const leftWall = createWall(0, containerHeight / 2, 20, containerHeight);
-const rightWall = createWall(containerWidth, containerHeight / 2, 20, containerHeight);
-const topWall = createWall(containerWidth / 2, 0, containerWidth, 20);
+const ground = createWall(midWidth / 2, midHeight, midWidth, wallSize);
+const leftWall = createWall(0, midHeight / 2, wallSize, midHeight);
+const rightWall = createWall(midWidth, midHeight / 2, wallSize, midHeight);
+const topWall = createWall(midWidth / 2, 0, midWidth, wallSize);
 World.add(engine.world, [ground, leftWall, rightWall, topWall]);
 
-// Uruchamienie silnika i renderera
+
+// Uruchomienie silnika i renderera
 Runner.run(runner, engine);
 Render.run(render);
+window.addEventListener("resize", function() {
+    
+    //$(".mid").css("width", "60vw");
+    //$("#canvas1").css("width") = $(".mid").css("width");
+    if ($(body).width() < 800) {
+        console.log("1")
+        console.log($(body).css("width"))
+        $(".mid").css("width", "40vw");
+        $("#canvas1").css("width", "40vw");
+    } if ($(body).width() >= 800 && $(body).width() < 1100) {
+        console.log("1.5")
+        $(".mid").css("width", "55vw");
+        $("#canvas1").css("width", "55vw");
+    } if ($(body).width() >= 1100 && $(body).width() < 1700) {
+        console.log("2")
+        console.log($(body).css("width"))
+        $(".mid").css("width", "60vw");
+        $("#canvas1").css("width", "60vw");
+    } if ($(body).width() >= 1700) {
+        console.log("2")
+        console.log($(body).css("width"))
+        $(".mid").css("width", "65vw");
+        $("#canvas1").css("width", "65vw");
+    }
+});
 
-let currentBody = null;
-let clonedBodies = [];
+if ($(body).width() < 800) {
+    console.log("1")
+    console.log($(body).css("width"))
+    $(".mid").css("width", "40vw");
+    $("#canvas1").css("width", "40vw");
+} if ($(body).width() >= 800 && $(body).width() < 1100) {
+    console.log("1.5")
+    $(".mid").css("width", "55vw");
+    $("#canvas1").css("width", "55vw");
+} if ($(body).width() >= 1100 && $(body).width() < 1700) {
+    console.log("2")
+    console.log($(body).css("width"))
+    $(".mid").css("width", "60vw");
+    $("#canvas1").css("width", "60vw");
+} if ($(body).width() >= 1700) {
+    console.log("2")
+    console.log($(body).css("width"))
+    $(".mid").css("width", "65vw");
+    $("#canvas1").css("width", "65vw");
+}
+
 const overlay = document.getElementById('overlay');
 let newBody = null;
+
 const createShapeClickHandler = (shape, imageURL) => () => {
     const bodies = Composite.allBodies(engine.world);
     const binWidth = render.options.width;
@@ -242,20 +297,18 @@ const createShapeClickHandler = (shape, imageURL) => () => {
 
     const binArea = binWidth * binHeight;
     const fillRate = occupiedArea / binArea;
-    
+
     if (fillRate >= 1) {
         overlay.style.display = 'block';
         for (let i = 0; i < coins.length; i++) {
             coins[i].disabled = true;
         }
-        
         return;
     } else {
         overlay.style.display = 'none';
         for (let i = 0; i < coins.length; i++) {
             coins[i].disabled = false;
         }
-        
         //render.options.background = 'transparent';
     }
 
@@ -292,12 +345,11 @@ const createShapeClickHandler = (shape, imageURL) => () => {
             break;
     }
 
-    
+
     //currentBody = newBody;
     World.add(engine.world, newBody);
     clonedBodies.push(newBody);
 };
-const walls = [ground, leftWall, rightWall, topWall];
 
 function lvlUpgrade(i) {
     const bodies = Composite.allBodies(engine.world);
@@ -540,8 +592,8 @@ function resetGame() {
     }
 
     $(".ascendPower").css("display", "block");
-    $(".awards").css("width", "120px");
-    $(".gold").css("width", "120px");
+    $(".awards").css("width", "33%");
+    $(".gold").css("width", "33%");
     ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
     
     
@@ -960,10 +1012,7 @@ para.style.position = "absolute";
              
 
 
-const awards = document.getElementById("awards");
-const gold = document.getElementById("gold");
-const left = document.getElementById("left");
-const coinsDivs = document.getElementsByClassName("coins");
+
 
 
 
@@ -1594,7 +1643,6 @@ function getSkill1Cooldown() {
 
 function setSkillOpacity1(savedskillOpacity1) {
     skill1.opacity = savedskillOpacity1;
-    
     console.log(skill1.opacity);
 
     if (savedskillOpacity1 == '1') {
@@ -1993,12 +2041,12 @@ function getAscendPowerBar() {
 function setAscendPowerBar(savedAscendPowerBar) {
     ascendPower.style.display = savedAscendPowerBar;
     if (savedAscendPowerBar == 'block') {
-        $(".awards").css("width", "120px");
-        $(".gold").css("width", "120px");
+        $(".awards").css("width", "33%");
+        $(".gold").css("width", "33%");
         ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
     } else {
-        $(".awards").css("width", "180px");
-        $(".gold").css("width", "180px");
+        $(".awards").css("width", "50%");
+        $(".gold").css("width", "50%");
     }
 }
 
@@ -2667,18 +2715,17 @@ for (let i = 0; i < dump.length; i++) {
 
 awards.addEventListener("click", function() {
     $(".ascendTab").css("display", "none");
-    left.style.backgroundColor = "rgba(140, 116, 116, 0.8)";
+    left.style.backgroundColor = "rgba(140, 116, 116)";
     ascendPower.style.backgroundColor = "rgba(180, 136, 146, 0.8)";
     awards.style.borderLeft = "none";
     awards.style.borderRight = "none";
     awards.style.borderBottom = "none";
-    if (left.style.backgroundColor == "rgba(140, 116, 116, 0.8)" || left.style.backgroundColor == "") {
+    
         gold.style.backgroundColor = "rgba(91, 77, 77, 0.8)";
-    }
+    
     gold.style.borderBottom = "2px solid black";
     gold.style.borderRight = "2px solid black";
     ascendPower.style.borderLeft = "2px solid black";
-    ascendPower.style.borderRight = "2px solid black";
     ascendPower.style.borderBottom = "2px solid black";
     for (let i =0; i < coinsDivs.length; i++) {
         coinsDivs[i].style.display = "none";
@@ -2697,7 +2744,6 @@ gold.addEventListener("click", function() {
     gold.style.borderBottom = "none";
     gold.style.borderRight = "none";
     ascendPower.style.borderLeft = "2px solid black";
-    ascendPower.style.borderRight = "2px solid black";
     ascendPower.style.borderBottom = "2px solid black";
     for (let i =0; i < coinsDivs.length; i++) {
         coinsDivs[i].style.display = "flex";
@@ -2909,3 +2955,8 @@ for (let i = 0; i < lvlUps.length; i++) {
 for (let i = 0; i < lvl10Ups.length; i++) {
     lvl10Ups[i].addEventListener("mouseover", function() { numericalUnits4(i); });
 }
+//console.log(left.style.height+" "+container.clientHeight);
+left.style.height = (container.clientHeight - 20) + "px";
+window.addEventListener('resize', function() {
+    left.style.height = (container.clientHeight - 20) + "px";
+});
