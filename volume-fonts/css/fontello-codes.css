@@ -1,0 +1,7 @@
+
+.icon-volume-max:before { content: '\e800'; } /* '' */
+.icon-volume-medium:before { content: '\e801'; } /* '' */
+.icon-volume-low:before { content: '\e802'; } /* '' */
+.icon-volume-off:before { content: '\e803'; } /* '' */
+.icon-down:before { content: '\f004'; } /* '' */
+.icon-up:before { content: '\f005'; } /* '' */

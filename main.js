@@ -34,14 +34,14 @@ const clickerShadow = document.querySelector("#clickerShadow");
 const frame1 = document.querySelector("#frame1");
 const frame2 = document.querySelector("#frame2");
 const frame3 = document.querySelector("#frame3");
-const lvlUp1 = document.querySelector("#lvlUp1");
-const lvlUp2 = document.querySelector("#lvlUp2");
-const lvlUp3 = document.querySelector("#lvlUp3");
-const lvlUp4 = document.querySelector("#lvlUp4");
-const doubleLvlUp1 = document.querySelector("#doubleLvlUp1");
-const doubleLvlUp2 = document.querySelector("#doubleLvlUp2");
-const doubleLvlUp3 = document.querySelector("#doubleLvlUp3");
-const doubleLvlUp4 = document.querySelector("#doubleLvlUp4");
+const lvlUp1 = document.querySelector(".lvlUp1");
+const lvlUp2 = document.querySelector(".lvlUp2");
+const lvlUp3 = document.querySelector(".lvlUp3");
+const lvlUp4 = document.querySelector(".lvlUp4");
+const Lvl10Up1 = document.querySelector("#Lvl10Up1");
+const Lvl10Up2 = document.querySelector("#Lvl10Up2");
+const Lvl10Up3 = document.querySelector("#Lvl10Up2");
+const Lvl10Up4 = document.querySelector("#Lvl10Up2");
 const lvl1 = document.querySelector("#lvl1"); // napisy "lvl 1 etc."
 const lvl2 = document.querySelector("#lvl2");
 const lvl3 = document.querySelector("#lvl3");
@@ -50,14 +50,26 @@ const text1 = document.querySelector("#text1");
 const text2 = document.querySelector("#text2");
 const text3 = document.querySelector("#text3");
 const text4 = document.querySelector("#text4");
-const lvlText1 = document.querySelector("#lvltext1");
-const lvlText2 = document.querySelector("#lvltext2");
-const lvlText3 = document.querySelector("#lvltext3");
-const lvlText4 = document.querySelector("#lvltext4");
-const lvl10Text1 = document.querySelector("#lvl10text1");
-const lvl10Text2 = document.querySelector("#lvl10text2");
-const lvl10Text3 = document.querySelector("#lvl10text3");
-const lvl10Text4 = document.querySelector("#lvl10text4");
+const lvlText1 = document.querySelector(".lvltext1");
+const lvlText2 = document.querySelector(".lvltext2");
+const lvlText3 = document.querySelector(".lvltext3");
+const lvlText4 = document.querySelector(".lvltext4");
+const lvl10Text1 = document.querySelector(".lvl10text1");
+const lvl10Text2 = document.querySelector(".lvl10text2");
+const lvl10Text3 = document.querySelector(".lvl10text3");
+const lvl10Text4 = document.querySelector(".lvl10text4");
+const lvl100Text1 = document.querySelector(".lvl100text1");
+const lvl100Text2 = document.querySelector(".lvl100text2");
+const lvl100Text3 = document.querySelector(".lvl100text3");
+const lvl100Text4 = document.querySelector(".lvl100text4");
+const lvl1kText1 = document.querySelector(".lvl1ktext1");
+const lvl1kText2 = document.querySelector(".lvl1ktext2");
+const lvl1kText3 = document.querySelector(".lvl1ktext3");
+const lvl1kText4 = document.querySelector(".lvl1ktext4");
+const coinLvlText = document.querySelector("#coinlvltext");
+const banknoteLvlText = document.querySelector("#banknotelvltext");
+const goldBarLvlText = document.querySelector("#goldBarLvlText");
+const bitCoinLvlText = document.querySelector("#bitCoinLvlText");
 const skill1 = document.querySelector("#skill1");
 const skill2 = document.querySelector("#skill2");
 const skill3 = document.querySelector("#skill3");
@@ -73,9 +85,14 @@ let container = document.getElementById("container");
 const awards = document.getElementById("awards");
 const gold = document.getElementById("gold");
 const left = document.getElementById("left");
+const right = document.getElementById("right");
 const coinsDivs = document.getElementsByClassName("coins");
 let lvlTexts = [lvlText1, lvlText2, lvlText3, lvlText4];
 let lvl10Texts = [lvl10Text1, lvl10Text2, lvl10Text3, lvl10Text4];
+let lvl100Texts = [lvl100Text1, lvl100Text2, lvl100Text3, lvl100Text4];
+let lvl1kTexts = [lvl1kText1, lvl1kText2, lvl1kText3, lvl1kText4];
+
+let moneyLvlTexts = [coinLvlText, banknoteLvlText, goldBarLvlText, bitCoinLvlText];
 
 let text = [text1, text2, text3, text4];
 
@@ -110,16 +127,16 @@ let achievements = [achievement, achievement2, achievement3, achievement4, achie
 let buttons = [button1, button2, button3, button4, button5, button6, button7, button8, button9, button10];
 
 let lvlUps = [lvlUp1, lvlUp2, lvlUp3, lvlUp4];
-let lvl10Ups = [doubleLvlUp1, doubleLvlUp2, doubleLvlUp3, doubleLvlUp4];
-let lvlAll = [lvlUp1, lvlUp2, lvlUp3, lvlUp4, doubleLvlUp1, doubleLvlUp2, doubleLvlUp3, doubleLvlUp4];
-let dump = [coin, banknote, goldBar, bitCoin, lvlUp1, lvlUp2, lvlUp3, lvlUp4, doubleLvlUp1, doubleLvlUp2, doubleLvlUp3, doubleLvlUp4];
+let lvl10Ups = [Lvl10Up1, Lvl10Up2, Lvl10Up3, Lvl10Up4];
+let lvlAll = [lvlUp1, lvlUp2, lvlUp3, lvlUp4];
+let dump = [coin, banknote, goldBar, bitCoin, lvlUp1, lvlUp2, lvlUp3, lvlUp4];
 
 wallet.grey = "img/walletGrey.png";
 piggyBank.grey = "img/piggyBankGrey.jpg";
 wallet.white = "img/wallet.png";
 piggyBank.white = "img/piggyBank.jpg";
 
-coin.goldPerClick = 100000;
+coin.goldPerClick = 1;
 banknote.goldPerClick = 2;
 goldBar.goldPerClick = 3;
 bitCoin.goldPerClick = 4;
@@ -187,6 +204,26 @@ let aspectRatio = 16/9;
 let midWidth = mid.offsetWidth;
 let midHeight = mid.offsetHeight;
 
+let coinDrop = new Audio("sounds/coin_drop.wav");
+function playCoinDrop() {
+    //let coinDrop = document.getElementById("coinDrop");
+    coinDrop.play();
+}
+
+let upgradeMoney = new Audio("sounds/upgradeMoney.wav");
+function playUpgradeMoney() {
+    //let coinDrop = document.getElementById("coinDrop");
+    upgradeMoney.play();
+}
+
+let gameMusic = document.getElementById("gameMusic");
+gameMusic.loop = true;
+
+document.addEventListener("click", function() {
+    gameMusic.play();
+});
+
+
 // Inicjowanie silnika Matter.js
 const {
     Engine,
@@ -228,56 +265,33 @@ const rightWall = createWall(midWidth, midHeight / 2, wallSize, midHeight);
 const topWall = createWall(midWidth / 2, 0, midWidth, wallSize);
 World.add(engine.world, [ground, leftWall, rightWall, topWall]);
 
-
 // Uruchomienie silnika i renderera
 Runner.run(runner, engine);
 Render.run(render);
+
+//console.log($(body).css("width"))
 window.addEventListener("resize", function() {
-    
-    //$(".mid").css("width", "60vw");
-    //$("#canvas1").css("width") = $(".mid").css("width");
-    if ($(body).width() < 800) {
-        console.log("1")
-        console.log($(body).css("width"))
-        $(".mid").css("width", "40vw");
-        $("#canvas1").css("width", "40vw");
-    } if ($(body).width() >= 800 && $(body).width() < 1100) {
-        console.log("1.5")
-        $(".mid").css("width", "55vw");
-        $("#canvas1").css("width", "55vw");
-    } if ($(body).width() >= 1100 && $(body).width() < 1700) {
-        console.log("2")
-        console.log($(body).css("width"))
-        $(".mid").css("width", "60vw");
-        $("#canvas1").css("width", "60vw");
-    } if ($(body).width() >= 1700) {
-        console.log("2")
-        console.log($(body).css("width"))
-        $(".mid").css("width", "65vw");
-        $("#canvas1").css("width", "65vw");
+    //console.log(window.innerHeight)
+    //console.log($(container).css("height")+" height")
+    if (window.innerWidth < container.clientWidth) {
+        $(container).css("height", "100vh");
+        $(container).css("width", "calc(100vw * 9 / 16)");
+        console.log("width containera rządzi")
+    } if (window.innerWidth > container.clientWidth) {
+        $(container).css("width", "100vw");
+        $(container).css("height", "calc(100vw * 9 / 16)");
+        console.log("width windowa rządzi")
+    } if (window.innerHeight < container.clientHeight) {
+        $(container).css("height", "100vh");
+        $(container).css("width", "calc(100vh * 16 / 9)");
+        console.log("height containera rządzi")
+    } if (window.innerHeight > container.clientHeight) {
+        $(container).css("width", "100vw");
+        $(container).css("height", "calc(100vw * 9 / 16)");
+        console.log("height windowa rządzi")
     }
 });
 
-if ($(body).width() < 800) {
-    console.log("1")
-    console.log($(body).css("width"))
-    $(".mid").css("width", "40vw");
-    $("#canvas1").css("width", "40vw");
-} if ($(body).width() >= 800 && $(body).width() < 1100) {
-    console.log("1.5")
-    $(".mid").css("width", "55vw");
-    $("#canvas1").css("width", "55vw");
-} if ($(body).width() >= 1100 && $(body).width() < 1700) {
-    console.log("2")
-    console.log($(body).css("width"))
-    $(".mid").css("width", "60vw");
-    $("#canvas1").css("width", "60vw");
-} if ($(body).width() >= 1700) {
-    console.log("2")
-    console.log($(body).css("width"))
-    $(".mid").css("width", "65vw");
-    $("#canvas1").css("width", "65vw");
-}
 
 const overlay = document.getElementById('overlay');
 let newBody = null;
@@ -436,11 +450,163 @@ function lvl10Upgrade(i) {
     
       while(count < 10) {
         if (typeof $(lvlUps[i])[0] != "undefined") {
-            $(lvlUps[i])[0].click();
+            lvlUpgrade(i);
             count++;
         }
     }
 }
+
+function lvl100Upgrade(i) {
+    let count = 0;
+    
+      while(count < 100) {
+        if (typeof $(lvlUps[i])[0] != "undefined") {
+            lvlUpgrade(i);
+            count++;
+        }
+    }
+}
+
+function lvl1000Upgrade(i) {
+    let count = 0;
+    
+      while(count < 1000) {
+        if (typeof $(lvlUps[i])[0] != "undefined") {
+            lvlUpgrade(i);
+            count++;
+        }
+    }
+}
+
+//console.log(left.style.height+" "+container.clientHeight);
+left.style.height = (container.clientHeight - 40) + "px";
+window.addEventListener('resize', function() {
+    left.style.height = (container.clientHeight - 40) + "px";
+});
+right.style.height = (container.clientHeight - 80) + "px";
+window.addEventListener('resize', function() {
+    right.style.height = (container.clientHeight - 80) + "px";
+});
+
+const up1 = document.querySelector(".up1");
+const down1 = document.querySelector(".down1");
+const up2 = document.querySelector(".up2");
+const down2 = document.querySelector(".down2");
+const up3 = document.querySelector(".up3");
+const down3 = document.querySelector(".down3");
+const up4 = document.querySelector(".up4");
+const down4 = document.querySelector(".down4");
+let ups = [up1, up2, up3, up4];
+let downs = [down1, down2, down3, down4];
+const coinMultiplerLvl = document.querySelector(".coinMultiplerLvl");
+const banknoteMultiplerLvl = document.querySelector(".banknoteMultiplerLvl");
+const goldBarMultiplerLvl = document.querySelector(".goldBarMultiplerLvl");
+const bitCoinMultiplerLvl = document.querySelector(".bitCoinMultiplerLvl");
+
+let moneyMultiplerLvls = [coinMultiplerLvl, banknoteMultiplerLvl, goldBarMultiplerLvl, bitCoinMultiplerLvl];
+
+    for (let b = 0; b < ups.length; b++) {
+        ups[b].addEventListener("click", function() {
+            if ($(moneyMultiplerLvls[b]).html() == "x1") {
+                console.log("x1");
+                $(moneyMultiplerLvls[b]).html("x10");
+                if (moneyMultiplerLvls[b] && ups[b]) {
+                    $(moneyMultiplerLvls[b]).removeClass(lvlTexts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl100Texts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl1kTexts[b]);
+                    $(moneyMultiplerLvls[b]).addClass(lvl10Texts[b]);
+                }
+            } else if ($(moneyMultiplerLvls[b]).html() == "x10") {
+                console.log("x10");
+                $(moneyMultiplerLvls[b]).html("x100");
+                $(moneyMultiplerLvls[b]).removeClass(lvlTexts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl10Texts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl1kTexts[b]);
+                $(moneyMultiplerLvls[b]).addClass(lvl100Texts[b]);
+            } else if ($(moneyMultiplerLvls[b]).html() == "x100") {
+                console.log("x100");
+                $(moneyMultiplerLvls[b]).html("x1K");
+                $(moneyMultiplerLvls[b]).removeClass(lvlTexts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl10Texts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl100Texts[b]);
+                $(moneyMultiplerLvls[b]).addClass(lvl1kTexts[b]);
+            }
+        });
+    }
+
+    for (let b = 0; b < downs.length; b++) {
+        downs[b].addEventListener("click", function() {
+            if ($(moneyMultiplerLvls[b]).html() == "x1") {
+                console.log("x1");
+            } else if ($(moneyMultiplerLvls[b]).html() == "x10") {
+                console.log("x10");
+                $(moneyMultiplerLvls[b]).html("x1");
+                if (moneyMultiplerLvls[b] && downs[b]) {
+                    $(moneyMultiplerLvls[b]).removeClass(lvl10Texts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl100Texts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl1kTexts[b]);
+                    $(moneyMultiplerLvls[b]).addClass(lvlTexts[b]);
+                }
+            } else if ($(moneyMultiplerLvls[b]).html() == "x100") {
+                console.log("x100");
+                $(moneyMultiplerLvls[b]).html("x10");
+                if (moneyMultiplerLvls[b] && downs[b]) {
+                    $(moneyMultiplerLvls[b]).removeClass(lvlTexts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl100Texts[b]);
+                    $(moneyMultiplerLvls[b]).removeClass(lvl1kTexts[b]);
+                    $(moneyMultiplerLvls[b]).addClass(lvl10Texts[b]);
+                }
+            } else if ($(moneyMultiplerLvls[b]).html() == "x1K") {
+                console.log("x100");
+                $(moneyMultiplerLvls[b]).html("x100");
+                $(moneyMultiplerLvls[b]).removeClass(lvlTexts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl10Texts[b]);
+                $(moneyMultiplerLvls[b]).removeClass(lvl1kTexts[b]);
+                $(moneyMultiplerLvls[b]).addClass(lvl100Texts[b]);
+            }
+        });
+    }
+    
+for (let i = 0; i < lvlUps.length; i++) {
+    lvlUps[i].addEventListener("click", function() {
+        if ($(moneyMultiplerLvls[i]).html() == "x1") {
+            console.log("x1");
+            lvlUpgrade(i);
+        } else if ($(moneyMultiplerLvls[i]).html() == "x10") {
+            console.log("x10");
+            lvl10Upgrade(i);
+        } else if ($(moneyMultiplerLvls[i]).html() == "x100") {
+            console.log("x100");
+            lvl100Upgrade(i);
+        }
+        else if ($(moneyMultiplerLvls[i]).html() == "x1K") {
+            console.log("x1000");
+            lvl1000Upgrade(i);
+        }
+    });
+}
+    let tooltip = document.querySelector(".tooltip-text");
+for (let i = 0; i < lvlUps.length; i++) {
+    lvlUps[i].addEventListener("mouseover", function() {
+        if ($(moneyMultiplerLvls[i]).html() == "x1") {
+            numericalUnits3(i); 
+        }
+
+        if ($(moneyMultiplerLvls[i]).html() == "x10") {
+            numericalUnits4(i); 
+        }
+
+        if ($(moneyMultiplerLvls[i]).html() == "x100") {
+            numericalUnits5(i); 
+        }
+
+        if ($(moneyMultiplerLvls[i]).html() == "x1K") {
+            numericalUnits6(i); 
+        }
+        
+    });
+}
+
 let bonusWhiteorGrey;
 function time(nr) {
     //grey = "img/walletGrey.png";
@@ -975,14 +1141,10 @@ function dragLeave() {
     banknote.className = 'money banknote dropzone';
     bitCoin.className = 'money bitCoin dropzone';
     goldBar.className = 'money goldBar dropzone';
-    lvlUp1.className = 'icon-angle-up lvlUp dropzone';
-    lvlUp2.className = 'icon-angle-up lvlUp dropzone';
-    lvlUp3.className = 'icon-angle-up lvlUp dropzone';
-    lvlUp4.className = 'icon-angle-up lvlUp dropzone';
-    doubleLvlUp1.className = 'icon-angle-double-up lvlUp dropzone';
-    doubleLvlUp2.className = 'icon-angle-double-up lvlUp dropzone';
-    doubleLvlUp3.className = 'icon-angle-double-up lvlUp dropzone';
-    doubleLvlUp4.className = 'icon-angle-double-up lvlUp dropzone';
+    lvlUp1.className = 'lvlUp1 lvlUp dropzone';
+    lvlUp2.className = 'lvlUp2 lvlUp dropzone';
+    lvlUp3.className = 'lvlUp3 lvlUp dropzone';
+    lvlUp4.className = 'lvlUp4 lvlUp dropzone';
     flag2 = false;
     $("#clickerShadow").css("display", "block");
 }
@@ -1008,13 +1170,6 @@ para.style.backgroundSize = "100%";
 para.style.width = "15px";
 para.style.height = "15px";
 para.style.position = "absolute";
-
-             
-
-
-
-
-
 
 skill1.style.opacity = opacity;
 
@@ -1089,55 +1244,92 @@ function numericalUnits() {
 function numericalUnits2(i) {
     function update() {
     if (coins[i].goldPerClick < 1000) {
-        $(text[i]).html('<span style="color: rgb(255, 255, 0);">'+names[i]+'</span>'+" - <span style='color:green;'>"+coins[i].goldPerClick+"$ </span> per click");
+        $(text[i]).html(coins[i].goldPerClick+"$");
     } else if (coins[i].goldPerClick >= 1000 && coins[i].goldPerClick < 100000) { //1
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000).toFixed(3)+"$ </span> per click"); 
+        $(text[i]).html((coins[i].goldPerClick / 1000).toFixed(3)+"$"); 
     }  else if (coins[i].goldPerClick >= 100000 && coins[i].goldPerClick < 1000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000).toFixed(0)+"K"+"$ </span> per click");   
+        $(text[i]).html((coins[i].goldPerClick / 1000).toFixed(0)+"K$");   
     } else if (coins[i].goldPerClick >= 1000000 && coins[i].goldPerClick < 100000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000).toFixed(3)+"K"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000).toFixed(3)+"K$");
     } else if (coins[i].goldPerClick >= 100000000 && coins[i].goldPerClick < 1000000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000).toFixed(0)+"M"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000).toFixed(0)+"M$");
     } else if (coins[i].goldPerClick >= 1000000000 && coins[i].goldPerClick < 100000000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000).toFixed(3)+"M"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000000).toFixed(3)+"M$");
     } else if (coins[i].goldPerClick >= 100000000000 && coins[i].goldPerClick < 1000000000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000).toFixed(0)+"B"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000000).toFixed(0)+"B$");
     } else if (coins[i].goldPerClick >= 1000000000000 && coins[i].goldPerClick < 100000000000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000).toFixed(3)+"B"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000000000).toFixed(3)+"B$");
     } else if (coins[i].goldPerClick >= 100000000000000 && coins[i].goldPerClick < 1000000000000000) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000).toFixed(0)+"T"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000000000).toFixed(0)+"T$");
     } else if (coins[i].goldPerClick >= 1000000000000000 && coins[i].goldPerClick < 100000000000000000n) {
-        $(text[i]).html(names[i]+" - <span style='color:green;'>"+(coins[i].goldPerClick / 1000000000000000).toFixed(3)+"T"+"$ </span> per click");
+        $(text[i]).html((coins[i].goldPerClick / 1000000000000000).toFixed(3)+"T$");
     }
     requestAnimationFrame(update);
 }
 update();
 }
-
+let toolMultipler1 = document.querySelector(".toolMultipler1");
+let toolMultipler2 = document.querySelector(".toolMultipler2");
+let toolMultipler3 = document.querySelector(".toolMultipler3");
+let toolMultipler4 = document.querySelector(".toolMultipler4");
+let toolMultiplers = [toolMultipler1, toolMultipler2, toolMultipler3, toolMultipler4];
 function numericalUnits3(i) {
     function update() {
+        $(toolMultiplers[i]).html("x1 ");
         if (levels[i] == 1) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+lvls[i].cost+"$ </span>");
+            $(lvlTexts[i]).html(lvls[i].cost+"$");
         } else if (Math.round(lvls[i].cost * 1.05) < 1000 && levels[i] > 1) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+Math.round(lvls[i].cost * 1.05)+"$ </span>");
+            $(lvlTexts[i]).html(Math.round(lvls[i].cost * 1.05)+"$");
         } else if (Math.round(lvls[i].cost * 1.05) >= 1000 && Math.round(lvls[i].cost * 1.05) < 100000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000).toFixed(3)+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000).toFixed(3)+"$");   
         }  else if (Math.round(lvls[i].cost * 1.05) >= 100000 && Math.round(lvls[i].cost * 1.05) < 1000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000).toFixed(0)+"K"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000).toFixed(0)+"K$");   
         } else if (Math.round(lvls[i].cost * 1.05) >= 1000000 && Math.round(lvls[i].cost * 1.05) < 100000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000).toFixed(3)+"K"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000).toFixed(3)+"K$");   
         } else if (Math.round(lvls[i].cost * 1.05) >= 100000000 && Math.round(lvls[i].cost * 1.05) < 1000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000).toFixed(0)+"M"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000).toFixed(0)+"M$");   
         } else if (Math.round(lvls[i].cost * 1.05) >= 1000000000 && Math.round(lvls[i].cost * 1.05) < 100000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000).toFixed(3)+"M"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000).toFixed(3)+"M$");   
         } else if (Math.round(lvls[i].cost * 1.05) >= 100000000000 && Math.round(lvls[i].cost * 1.05) < 1000000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000).toFixed(0)+"B"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000).toFixed(0)+"B$");   
         } else if (Math.round(lvls[i].cost * 1.05) >= 1000000000000 && Math.round(lvls[i].cost * 1.05) < 100000000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000000).toFixed(3)+"B"+"$ </span>");   
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000000).toFixed(3)+"B$");   
         }else if (Math.round(lvls[i].cost * 1.05) >= 100000000000000 && Math.round(lvls[i].cost * 1.05) < 1000000000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000000).toFixed(0)+"T"+"$ </span>");
-        } else if (Math.round(lvls[i].cost * 1.05) >= 1000000000000000) {
-            $(lvlTexts[i]).html("<span style='font-size:80%;'>x1</span> <span style='color:green;'>"+(Math.round(lvls[i].cost * 1.05) / 1000000000000000).toFixed(3)+"T"+"$ </span>");
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000000).toFixed(0)+"T$");
+        } else if (Math.round(lvls[i].cost * 1.05) >= 1000000000000000 && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000000000).toFixed(3)+"T$");
+        }  else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / 1000000000000000).toFixed(0)+"q");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000n)).toFixed(3)+"q");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000n)).toFixed(0)+"Q");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000n)).toFixed(0)+"s");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(100000000000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(1000000000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+        } else if (Math.round(lvls[i].cost * 1.05) >= Number(1000000000000000000000000000000000000000n) && Math.round(lvls[i].cost * 1.05) < Number(100000000000000000000000000000000000000000n)) {
+            $(lvlTexts[i]).html((Math.round(lvls[i].cost * 1.05) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
         }
         requestAnimationFrame(update);
     }
@@ -1146,70 +1338,84 @@ function numericalUnits3(i) {
 
 function numericalUnits4(i) {
     function update() {
-        let count = 0;
+        let sum = 0;
+        let sum10 = 0;
         let a = lvls[i].cost;
-        let b;
-        let c;
-        let d;
-        let e;
-        let f;
-        let g;
-        let h;
-        let j;
-        let k;
-        let aa;
+        let aa = lvls[i].cost;
+        let lvl1 = lvls[i].cost;
         if (levels[i] == 1) {
-            while(count < 10) {
+            for (let i = 1; i <= 9; i++) { // iterujemy 9 razy (łącznie 10 mnożeń)
                 if (typeof $(a)[0] != "undefined") {
-                    b = Math.round(a * 1.05);
-                    c = Math.round(b * 1.05);
-                    d = Math.round(c * 1.05);
-                    e = Math.round(d * 1.05);
-                    f = Math.round(e * 1.05);
-                    g = Math.round(f * 1.05);
-                    h = Math.round(g * 1.05);
-                    j = Math.round(h * 1.05);
-                    k = Math.round(j * 1.05);
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+(a + b + c + d + e + f + g + h + j + k)+"$ </span>");
-                    count++;
+                        let b = a * 1.05; // mnożenie przez 1.05
+                        b = Math.round(b); // zaokrąglenie w górę
+                        a = b; // aktualizacja wartości b
+                        sum += b;
+                    }
+                }
+                $(lvl10Texts[i]).html((lvl1 + sum)+"$");
+                $(toolMultiplers[i]).html("x10 ");
+        } else if (levels[i] > 1) {
+            for (let i = 1; i <= 10; i++) {
+                if (typeof $(a)[0] != "undefined") {
+                    let bb = aa * 1.05;
+                    bb = Math.round(bb);
+                    aa = bb;
+                    sum10 += bb;
                 }
             }
-        } else if (levels[i] > 1) {
-            while(count < 10) {
-                if (typeof $(a)[0] != "undefined") {
-                    aa = Math.round(lvls[i].cost * 1.05);
-                    b = Math.round(aa * 1.05);
-                    c = Math.round(b * 1.05);
-                    d = Math.round(c * 1.05);
-                    e = Math.round(d * 1.05);
-                    f = Math.round(e * 1.05);
-                    g = Math.round(f * 1.05);
-                    h = Math.round(g * 1.05);
-                    j = Math.round(h * 1.05);
-                    k = Math.round(j * 1.05);
-                    if ((aa + b + c + d + e + f + g + h + j + k) < 1000 && levels[i] > 1) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+(aa + b + c + d + e + f + g + h + j + k)+"$ </span>");
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 1000 && (aa + b + c + d + e + f + g + h + j + k) < 100000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000).toFixed(3)+"$ </span>");   
-                    }  else if ((aa + b + c + d + e + f + g + h + j + k) >= 100000 && (aa + b + c + d + e + f + g + h + j + k) < 1000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000).toFixed(0)+"K$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 1000000 && (aa + b + c + d + e + f + g + h + j + k) < 100000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000).toFixed(3)+"K$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 100000000 && (aa + b + c + d + e + f + g + h + j + k) < 1000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000).toFixed(0)+"M$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 1000000000 && (aa + b + c + d + e + f + g + h + j + k) < 100000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000000).toFixed(3)+"M$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 100000000000 && (aa + b + c + d + e + f + g + h + j + k) < 1000000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000000).toFixed(0)+"B$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 1000000000000 && (aa + b + c + d + e + f + g + h + j + k) < 100000000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000000000).toFixed(3)+"B$ </span>");   
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 100000000000000 && (aa + b + c + d + e + f + g + h + j + k) < 1000000000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000000000).toFixed(0)+"T$ </span>");
-                    } else if ((aa + b + c + d + e + f + g + h + j + k) >= 1000000000000000) {
-                    $(lvl10Texts[i]).html("<span style='font-size:80%;'>x10</span> <span style='color:green;'>"+((aa + b + c + d + e + f + g + h + j + k) / 1000000000000000).toFixed(3)+"T$ </span>");
-                    }
-                    count++;
-                }
+            $(toolMultiplers[i]).html("x10 ");
+            if ((sum10) < 1000 && levels[i] > 1) {
+                $(lvl10Texts[i]).html((sum10)+"$ ");
+            } else if ((sum10) >= 1000 && (sum10) < 100000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000).toFixed(3)+"$");   
+            }  else if ((sum10) >= 100000 && (sum10) < 1000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000).toFixed(0)+"K$");   
+            } else if ((sum10) >= 1000000 && (sum10) < 100000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000).toFixed(3)+"K$");   
+            } else if ((sum10) >= 100000000 && (sum10) < 1000000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000).toFixed(0)+"M$");   
+            } else if ((sum10) >= 1000000000 && (sum10) < 100000000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000).toFixed(3)+"M$");   
+            } else if ((sum10) >= 100000000000 && (sum10) < 1000000000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000).toFixed(0)+"B$");   
+            } else if ((sum10) >= 1000000000000 && (sum10) < 100000000000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000000).toFixed(3)+"B$");   
+            } else if ((sum10) >= 100000000000000 && (sum10) < 1000000000000000) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000000).toFixed(0)+"T$");
+            } else if ((sum10) >= 1000000000000000 && (sum10) < Number(100000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000000000).toFixed(3)+"T$");
+            }  else if ((sum10) >= Number(100000000000000000n) && (sum10) < Number(1000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / 1000000000000000).toFixed(0)+"q");
+            } else if ((sum10) >= Number(1000000000000000000n) && (sum10) < Number(100000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(3)+"q");
+            } else if ((sum10) >= Number(100000000000000000000n) && (sum10) < Number(1000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(0)+"Q");
+            } else if ((sum10) >= Number(1000000000000000000000n) && (sum10) < Number(100000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+            } else if ((sum10) >= Number(100000000000000000000000n) && (sum10) < Number(1000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(0)+"s");
+            } else if ((sum10) >= Number(1000000000000000000000000n) && (sum10) < Number(100000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+            } else if ((sum10) >= Number(100000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+            } else if ((sum10) >= Number(1000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+            } else if ((sum10) >= Number(100000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+            } else if ((sum10) >= Number(1000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+            } else if ((sum10) >= Number(100000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000000n)) {
+                $(lvl10Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
             }
         }
         requestAnimationFrame(update);
@@ -1217,7 +1423,276 @@ function numericalUnits4(i) {
     update();
 }
 
-let settings = document.querySelector(".settings");
+function numericalUnits5(i) {
+    function update() {
+        let sum = 0;
+        let sum10 = 0;
+        let a = lvls[i].cost;
+        let aa = lvls[i].cost;
+        let lvl1 = lvls[i].cost;
+        if (levels[i] == 1) {
+            for (let i = 1; i <= 99; i++) {
+                let b = a * 1.05;
+                b = Math.round(b);
+                a = b;
+                sum += b;
+            }
+
+            if ((lvl1 + sum) >= 1000 && (lvl1 + sum) < 100000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000).toFixed(3)+"$");   
+            }  else if ((lvl1 + sum) >= 100000 && (lvl1 + sum) < 1000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000).toFixed(0)+"K$");   
+            } else if ((lvl1 + sum) >= 1000000 && (lvl1 + sum) < 100000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000).toFixed(3)+"K$");   
+            } else if ((lvl1 + sum) >= 100000000 && (lvl1 + sum) < 1000000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000).toFixed(0)+"M$");   
+            } else if ((lvl1 + sum) >= 1000000000 && (lvl1 + sum) < 100000000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000).toFixed(3)+"M$");   
+            } else if ((lvl1 + sum) >= 100000000000 && (lvl1 + sum) < 1000000000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000).toFixed(0)+"B$");   
+            } else if ((lvl1 + sum) >= 1000000000000 && (lvl1 + sum) < 100000000000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000000).toFixed(3)+"B$");   
+            } else if ((lvl1 + sum) >= 100000000000000 && (lvl1 + sum) < 1000000000000000) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000000).toFixed(0)+"T$");
+            } else if ((lvl1 + sum) >= 1000000000000000 && (lvl1 + sum) < Number(100000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000000000).toFixed(3)+"T$");
+            } else if ((lvl1 + sum) >= Number(100000000000000000n) && (lvl1 + sum) < Number(1000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / 1000000000000000).toFixed(0)+"q");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000n)).toFixed(3)+"q");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000n)).toFixed(0)+"Q");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000n)).toFixed(0)+"s");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
+            }
+                $(toolMultiplers[i]).html("x100 ");
+        } else if (levels[i] > 1) {
+            for (let j = 1; j <= 100; j++) {
+                let bb = aa * 1.05;
+                bb = Math.round(bb);
+                aa = bb;
+                sum10 += bb;
+            }
+
+            if ((sum10) >= 1000 && (sum10) < 100000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000).toFixed(3)+"$");   
+            }  else if ((sum10) >= 100000 && (sum10) < 1000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000).toFixed(0)+"K$");   
+            } else if ((sum10) >= 1000000 && (sum10) < 100000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000).toFixed(3)+"K$");   
+            } else if ((sum10) >= 100000000 && (sum10) < 1000000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000).toFixed(0)+"M$");   
+            } else if ((sum10) >= 1000000000 && (sum10) < 100000000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000).toFixed(3)+"M$");   
+            } else if ((sum10) >= 100000000000 && (sum10) < 1000000000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000).toFixed(0)+"B$");   
+            } else if ((sum10) >= 1000000000000 && (sum10) < 100000000000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000000).toFixed(3)+"B$");   
+            } else if ((sum10) >= 100000000000000 && (sum10) < 1000000000000000) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000000).toFixed(0)+"T$");
+            } else if ((sum10) >= 1000000000000000 && (sum10) < Number(100000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000000000).toFixed(3)+"T$");
+            } else if ((sum10) >= Number(100000000000000000n) && (sum10) < Number(1000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / 1000000000000000).toFixed(0)+"q");
+            } else if ((sum10) >= Number(1000000000000000000n) && (sum10) < Number(100000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(3)+"q");
+            } else if ((sum10) >= Number(100000000000000000000n) && (sum10) < Number(1000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(0)+"Q");
+            } else if ((sum10) >= Number(1000000000000000000000n) && (sum10) < Number(100000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+            } else if ((sum10) >= Number(100000000000000000000000n) && (sum10) < Number(1000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(0)+"s");
+            } else if ((sum10) >= Number(1000000000000000000000000n) && (sum10) < Number(100000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+            } else if ((sum10) >= Number(100000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+            } else if ((sum10) >= Number(1000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+            } else if ((sum10) >= Number(100000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+            } else if ((sum10) >= Number(1000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+            } else if ((sum10) >= Number(100000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000000n)) {
+                $(lvl100Texts[i]).html(((sum10) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
+            }
+                $(toolMultiplers[i]).html("x100 ");
+        }
+        
+        requestAnimationFrame(update);
+    }
+    update();
+}
+
+function numericalUnits6(i) {
+    function update() {
+        let sum = 0;
+        let sum10 = 0;
+        let a = lvls[i].cost;
+        let aa = lvls[i].cost;
+        let lvl1 = lvls[i].cost;
+        if (levels[i] == 1) {
+            for (let j = 1; j <= 999; j++) {
+                let b = a * 1.05;
+                b = Math.round(b);
+                a = b;
+                sum += b;
+            }
+
+            if ((lvl1 + sum) >= 1000 && (lvl1 + sum) < 100000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000).toFixed(3)+"$");   
+            } else if ((lvl1 + sum) >= 100000 && (lvl1 + sum) < 1000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000).toFixed(0)+"K$");   
+            } else if ((lvl1 + sum) >= 1000000 && (lvl1 + sum) < 100000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000).toFixed(3)+"K$");   
+            } else if ((lvl1 + sum) >= 100000000 && (lvl1 + sum) < 1000000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000).toFixed(0)+"M$");   
+            } else if ((lvl1 + sum) >= 1000000000 && (lvl1 + sum) < 100000000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000).toFixed(3)+"M$");   
+            } else if ((lvl1 + sum) >= 100000000000 && (lvl1 + sum) < 1000000000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000).toFixed(0)+"B$");   
+            } else if ((lvl1 + sum) >= 1000000000000 && (lvl1 + sum) < 100000000000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000000).toFixed(3)+"B$");   
+            } else if ((lvl1 + sum) >= 100000000000000 && (lvl1 + sum) < 1000000000000000) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000000).toFixed(0)+"T$");
+            } else if ((lvl1 + sum) >= 1000000000000000 && (lvl1 + sum) < Number(100000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000000000).toFixed(3)+"T$");
+            } else if ((lvl1 + sum) >= Number(100000000000000000n) && (lvl1 + sum) < Number(1000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / 1000000000000000).toFixed(0)+"q");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000n)).toFixed(3)+"q");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000n)).toFixed(0)+"Q");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000n)).toFixed(0)+"s");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+            } else if ((lvl1 + sum) >= Number(100000000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+            } else if ((lvl1 + sum) >= Number(1000000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+            } else if ((sum10) >= Number(100000000000000000000000000000000000000n) && (lvl1 + sum) < Number(1000000000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+            } else if ((sum10) >= Number(1000000000000000000000000000000000000000n) && (lvl1 + sum) < Number(100000000000000000000000000000000000000000n)) {
+                $(lvl1kTexts[i]).html(((lvl1 + sum) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
+            }
+            $(toolMultiplers[i]).html("x1K ");
+        } if (levels[i] > 1) {
+            for (let j = 1; j <= 1000; j++) {
+                let bb = aa * 1.05;
+                bb = Math.round(bb);
+                aa = bb;
+                sum10 += bb;
+                if ((sum10) >= 1000 && (sum10) < 100000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000).toFixed(3)+"$");   
+                } else if ((sum10) >= 100000 && (sum10) < 1000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000).toFixed(0)+"K$");   
+                } else if ((sum10) >= 1000000 && (sum10) < 100000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000).toFixed(3)+"K$");   
+                } else if ((sum10) >= 100000000 && (sum10) < 1000000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000).toFixed(0)+"M$");   
+                } else if ((sum10) >= 1000000000 && (sum10) < 100000000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000).toFixed(3)+"M$");   
+                } else if ((sum10) >= 100000000000 && (sum10) < 1000000000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000).toFixed(0)+"B$");   
+                } else if ((sum10) >= 1000000000000 && (sum10) < 100000000000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000000).toFixed(3)+"B$");   
+                } else if ((sum10) >= 100000000000000 && (sum10) < 1000000000000000) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000000).toFixed(0)+"T$");
+                } else if ((sum10) >= 1000000000000000 && (sum10) < Number(100000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000000000).toFixed(3)+"T$");
+                } else if ((sum10) >= Number(100000000000000000n) && (sum10) < Number(1000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / 1000000000000000).toFixed(0)+"q");
+                } else if ((sum10) >= Number(1000000000000000000n) && (sum10) < Number(100000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(3)+"q");
+                } else if ((sum10) >= Number(100000000000000000000n) && (sum10) < Number(1000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000n)).toFixed(0)+"Q");
+                } else if ((sum10) >= Number(1000000000000000000000n) && (sum10) < Number(100000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(3)+"Q");
+                } else if ((sum10) >= Number(100000000000000000000000n) && (sum10) < Number(1000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000n)).toFixed(0)+"s");
+                } else if ((sum10) >= Number(1000000000000000000000000n) && (sum10) < Number(100000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(3)+"s");
+                } else if ((sum10) >= Number(100000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000n)).toFixed(0)+"S");
+                } else if ((sum10) >= Number(1000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(3)+"S");
+                } else if ((sum10) >= Number(100000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000n)).toFixed(0)+"O");
+                } else if ((sum10) >= Number(1000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(3)+"O");
+                } else if ((sum10) >= Number(100000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000n)).toFixed(0)+"N");
+                } else if ((sum10) >= Number(1000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(3)+"N");
+                } else if ((sum10) >= Number(100000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000000n)).toFixed(0)+"D");
+                } else if ((sum10) >= Number(1000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(3)+"D");
+                } else if ((sum10) >= Number(100000000000000000000000000000000000000n) && (sum10) < Number(1000000000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000000000n)).toFixed(0)+"X");
+                } else if ((sum10) >= Number(1000000000000000000000000000000000000000n) && (sum10) < Number(100000000000000000000000000000000000000000n)) {
+                    $(lvl1kTexts[i]).html(((sum10) / Number(1000000000000000000000000000000000000000n)).toFixed(3)+"X");
+                }
+            }
+
+            
+            $(toolMultiplers[i]).html("x1K ");
+        }
+        
+        requestAnimationFrame(update);
+    }
+    update();
+}
+
+let menu = document.querySelector(".menu");
 let windowOfSettings = document.querySelector(".windowOfSettings");
 
 let closeSettings = document.querySelector(".closeSettings");
@@ -1232,6 +1707,11 @@ function enableInteraction() {
     document.querySelectorAll(".lvlUp").forEach(element => {
         element.classList.add('pointer');
         element.classList.remove("no-pointer");
+    });
+
+    document.querySelectorAll(".coinLvlupContainer").forEach(element => {
+        element.classList.add('no-pointer');
+        element.classList.remove("pointer");
     });
 
     document.querySelectorAll("#clicker").forEach(element => {
@@ -1250,7 +1730,7 @@ function enableInteraction() {
         element.classList.remove("no-pointer");
     });
 
-    document.querySelectorAll(".settings").forEach(element => {
+    document.querySelectorAll(".menu").forEach(element => {
         element.classList.add('pointer');
         element.classList.remove("no-pointer");
     });
@@ -1298,6 +1778,11 @@ function disableInteraction() {
         element.classList.remove("pointer");
     });
 
+    document.querySelectorAll(".coinLvlupContainer").forEach(element => {
+        element.classList.add('no-pointer');
+        element.classList.remove("pointer");
+    });
+
     document.querySelectorAll("#clicker").forEach(element => {
         element.classList.add('no-pointer');
         element.classList.remove("pointer");
@@ -1313,7 +1798,7 @@ function disableInteraction() {
         element.classList.remove("pointer");
     });
 
-    document.querySelectorAll(".settings").forEach(element => {
+    document.querySelectorAll(".menu").forEach(element => {
         element.classList.add('no-pointer');
         element.classList.remove("pointer");
     });
@@ -2490,7 +2975,7 @@ const observer = new MutationObserver((mutationsList) => {
 // Rozpoczęcie obserwowania zmian w ".achievementTable" z zaktualizowaną konfiguracją
 observer.observe(document.querySelector('.achievementTable'), config);
 
-settings.addEventListener("click", function() {
+menu.addEventListener("click", function() {
     windowOfSettings.style.display = "block";
     //console.log(windowOfSettings.style.display);
     disableInteraction();
@@ -2498,6 +2983,13 @@ settings.addEventListener("click", function() {
 
 closeSettings.addEventListener("click", function() {
     windowOfSettings.style.display = "none";
+    volumeBox.style.display = "none";
+    save.style.display = "block";
+    load.style.display = "block";
+    settings.style.display = "block";
+    quit.style.display = "block";
+    backToMainMenu.style.display = "none";
+    sound.style.display = "none";
     //console.log(windowOfSettings.style.display);
     enableInteraction();
 });
@@ -2650,6 +3142,125 @@ load.addEventListener("click", function() {
     numericalUnits();
 });
 
+let settings = document.querySelector(".settings");
+let sound = document.querySelector(".sound");
+let volumeOff = document.querySelector(".icon-volume-off");
+let volumeLow = document.querySelector(".icon-volume-low");
+let volumeMedium = document.querySelector(".icon-volume-medium");
+let volumeMax = document.querySelector(".icon-volume-max");
+let volumeControl = document.querySelector(".volumeControl");
+let currentVolume = 1;
+let volumeBox = document.querySelector(".volumeBox");
+let backToMainMenu = document.querySelector(".backToMainMenu");
+let volumeOn = document.querySelector(".volumeOn");
+settings.addEventListener("click", function() {
+    save.style.display = "none";
+    load.style.display = "none";
+    quit.style.display = "none";
+    settings.style.display = "none";
+    sound.style.display = "block";
+    backToMainMenu.style.display = "block";
+});
+
+sound.addEventListener("click", function() {
+    //volumeOff.style.display = "block";
+    //volumeControl.style.display = "block";
+    volumeBox.style.display = "block";
+    sound.style.display = "none";
+});
+
+backToMainMenu.addEventListener("click", function() {
+    volumeBox.style.display = "none";
+    save.style.display = "block";
+    load.style.display = "block";
+    settings.style.display = "block";
+    quit.style.display = "block";
+    backToMainMenu.style.display = "none";
+    sound.style.display = "none";
+});
+/*
+const volumes = document.querySelectorAll(".volume");
+
+volumes.forEach(volume => {
+    volume.addEventListener("click", function() {
+        if (this) {
+            console.log("volume clicked")
+            volumes.forEach(otherVolumes => {
+                if (otherVolumes !== this) {
+                    otherVolumes.style.color = "black";
+                }
+            });
+            
+            this.style.color = "green";
+        }
+    });
+})
+*/
+let volume33 = false;
+let volume66 = false;
+let volume100 = true;
+function changeVolume() {
+    if (currentVolume == 0.66) {
+        volume100 = true;
+        volume66 = false;
+        volume33 = false;
+        currentVolume = 1;
+        gameMusic.volume = 1;
+        console.log("1");
+        $(volumeControl).addClass("icon-volume-max");
+        $(volumeControl).removeClass("icon-volume-medium");
+    } else if (currentVolume == 1) {
+        volume33 = true;
+        volume66 = false;
+        volume100 = false;
+        currentVolume = 0.33;
+        gameMusic.volume = 0.33;
+        console.log("0.33");
+        $(volumeControl).addClass("icon-volume-low");
+        $(volumeControl).removeClass("icon-volume-max");
+    } else if (currentVolume == 0.33) {
+        volume66 = true;
+        volume33 = false;
+        volume100 = false;
+        currentVolume = 0.66;
+        gameMusic.volume = 0.66;
+        console.log("0.66");
+        $(volumeControl).removeClass("icon-volume-low");
+        $(volumeControl).addClass("icon-volume-medium");
+    }
+}
+
+function offVolume() {
+        if (currentVolume == 1 || currentVolume == 0.66 || currentVolume == 0.33) {
+            gameMusic.volume = 0;
+            currentVolume = 0;
+            volumeOff.style.color = "rgb(196, 58, 58)";
+            volumeControl.style.opacity = "0.5";
+            volumeOn.style.display = "none";
+            volumeOff.style.display = "block";
+            console.log("volume = 0");
+        } else {
+            volumeOff.style.color = "black";
+            volumeControl.style.opacity = "1";
+            volumeOn.style.display = "block";
+            volumeOff.style.display = "none";
+            if (volume100) {
+                gameMusic.volume = 1;
+                currentVolume = 1;
+                console.log("volume = 1");
+            } else if (volume66) {
+                gameMusic.volume = 0.66;
+                currentVolume = 0.66;
+                console.log("volume = 0.66");
+            } else if (volume33) {
+                gameMusic.volume = 0.33;
+                currentVolume = 0.33;
+                console.log("volume = 0,33");
+            }
+            console.log("volume works?");
+        }
+};
+
 window.onload = function() {
     let redirectFromIndex = localStorage.getItem('redirectFromIndex');
     if (redirectFromIndex) {
@@ -2746,7 +3357,7 @@ gold.addEventListener("click", function() {
     ascendPower.style.borderLeft = "2px solid black";
     ascendPower.style.borderBottom = "2px solid black";
     for (let i =0; i < coinsDivs.length; i++) {
-        coinsDivs[i].style.display = "flex";
+        coinsDivs[i].style.display = "block";
     }
 
     achievementTable.style.display = "none";
@@ -2911,14 +3522,6 @@ document.getElementById('banknote').addEventListener('click', createShapeClickHa
 document.getElementById('goldBar').addEventListener('click', createShapeClickHandler('goldBar', 'img/goldbar.png'));
 document.getElementById('bitCoin').addEventListener('click', createShapeClickHandler('circle', 'img/bitcoin.webp'));
 
-for (let i = 0; i < lvlUps.length; i++) {
-    lvlUps[i].addEventListener("click", function() { lvlUpgrade(i) });
-}
-
-for (let i = 0; i < lvl10Ups.length; i++) {
-    lvl10Ups[i].addEventListener("click", function() { lvl10Upgrade(i) });
-}
-
 for (let i = 0; i < achievements.length; i++) {
     window.addEventListener("load", function() { AchievementDisplay(i); });
 }
@@ -2947,16 +3550,9 @@ function roundingZeros() {
 for (let i = 0; i < coins.length; i++) {
     coins[i].addEventListener("mouseover", function() { numericalUnits2(i); });
 }
+/*
 
-for (let i = 0; i < lvlUps.length; i++) {
-    lvlUps[i].addEventListener("mouseover", function() { numericalUnits3(i); });
-}
 
 for (let i = 0; i < lvl10Ups.length; i++) {
     lvl10Ups[i].addEventListener("mouseover", function() { numericalUnits4(i); });
-}
-//console.log(left.style.height+" "+container.clientHeight);
-left.style.height = (container.clientHeight - 20) + "px";
-window.addEventListener('resize', function() {
-    left.style.height = (container.clientHeight - 20) + "px";
-});
+}*/

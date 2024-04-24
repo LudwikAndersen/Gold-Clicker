@@ -7,7 +7,9 @@
     <link href="main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="fonts-lvlup/css/fontello.css">
+    <link rel="stylesheet" href="volume-fonts/css/fontello.css">
     <title>Document</title>
 </head>
 <body>
@@ -16,11 +18,27 @@
             <img src="img/close.png" alt=""></div>
             <div class="save"><p>Save</p></div>
             <div class="load">Load</div>
+            <div class="settings">Settings</div>
             <div class="quit">Quit</div>
+            <div class="sound">Sound</div>
+            <div class="backToMainMenu">Back</div>
+            <div class="volumeBox">
+                <div class="volume" onclick="offVolume()">
+                    <img class="volumeOn" src="./volume-fonts/font/volume-on_fontello.png" alt = "volume" style="width: 40px; height: 61px; position: absolute; left: 12px; top: 80px;">
+                    <i class="icon-volume-off" id="volumeOff"></i>
+                </div> 
+                <p style="font-size: 18px; font-weight: bold; position: absolute; left: 95px; top:80px;" >click to mute/unmute game</p>
+                
+                <div class="icon-volume-max volumeControl" id="volumeControl" onclick="changeVolume()"></div>
+                <p style="font-size: 18px; font-weight: bold; position: absolute; left: 95px; top: 10px;">click to change volume</p>
+            </div>
+            <audio id="gameMusic" loop>
+                <source src="sounds/gameMusic.wav" type="audio/mpeg">
+            </audio>
         </div>
-        <div class="all">    
+        <div class="all">
             <section class="left" id="left">
-                <div class="menu">
+                <div class="leftMenu">
                     <div class="gold bar" id="gold">gold</div>
                     <div class="awards bar" id="awards">awards</div>
                     <div class="ascendPower bar" id="ascendPower">ascend</div>
@@ -71,78 +89,80 @@
                 <div class="coins" id="coins">
                     <div class="frame0" id="frame0">
                         <div class="moneyButtons">
-                            <p class="tooltip-text" id="text1"><span style="color: rgb(255, 255, 0);">Coin</span> - 1$ per click</p>
-                            <button class="coin money dropzone" data-level="1" id="coin" title="Coin"></button>
+                            <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Coin</span> - <span id="text1" style='color:green;'>1$</span> per click</p>
+                            <button class="coin money dropzone" data-level="1" id="coin" onclick="playCoinDrop()"></button>
                         </div>
-                        
                         <p class="levels" id="lvl1">lvl 1</p>
                         <div class="upgrade">
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvltext1"></p>
-                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp1"></i></p>
+                            <div class="coinLvlupContainer">
+                                <p><i class="icon-up up1"></i></p>
+                                <div class="cloudsLvlUps">
+                                    <p class="tooltip-text" id="coinlvltext"><span class="toolMultipler1" style='font-size:80%;'></span><span class="lvltext1 lvl10text1 lvl100text1 lvl1ktext1" style='color:green;'></span></p>
+                                    <button class="lvlUp1 lvlUp dropzone" id="lvlUp1" onclick="playUpgradeMoney()"></button>
+                                </div>
+                                <p><i class="icon-down down1"></i></p>
                             </div>
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvl10text1"></p>
-                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp1"></i></p>
-                            </div>
+                            <p class="coinMultiplerLvl">x1</p>
                         </div>
-                    
                     </div>
                 </div>
                 <div class="coins" id="coins">
                     <div class="frame" id="frame1">
                         <div class="moneyButtons">
-                            <p class="tooltip-text" id="text2">Banknote - 2$ per click</p>
-                            <button class="banknote money dropzone" data-level="1" id="banknote" title="Banknote">Banknote</button>
+                            <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Banknote</span> - <span id="text2" style='color:green;'>2$</span> per click</p>
+                            <button class="banknote money dropzone" data-level="1" id="banknote">Banknote</button>
                         </div>
                         <p class="levels" id="lvl2">lvl 1</p>
                         <div class="upgrade">
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvltext2"></p>
-                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp2"></i></p>
+                            <div class="coinLvlupContainer">
+                                <p><i class="icon-up up2"></i></p>
+                                <div class="cloudsLvlUps">
+                                    <p class="tooltip-text" id="banknotelvltext"><span class="toolMultipler2" style='font-size:80%;'></span><span class="lvltext2 lvl10text2 lvl100text2 lvl1ktext2" style='color:green;'></span></p>
+                                    <button class="lvlUp2 lvlUp dropzone" id="lvlUp2" onclick="playUpgradeMoney()"></button>
+                                </div>
+                                <p><i class="icon-down down2"></i></p>
                             </div>
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvl10text2"></p>
-                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp2"></i></p>
-                            </div>
+                            <p class="banknoteMultiplerLvl">x1</p>
                         </div>
                     </div>
                 </div>
                 <div class="coins" id="coins">
                     <div class="frame" id="frame2">
                         <div class="moneyButtons">
-                            <p class="tooltip-text" id="text3">Gold Bar - 3$ per click</p>
-                            <button class="goldBar money dropzone" data-level="1" id="goldBar" title="goldBar">Gold Bar</button>
+                            <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Gold Bar</span> - <span id="text3" style='color:green;'>3$</span> per click</p>
+                            <button class="goldBar money dropzone" data-level="1" id="goldBar">Gold Bar</button>
                         </div>
                         <p class="levels" id="lvl3">lvl 1</p>
                         <div class="upgrade">
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvltext3"></p>
-                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp3"></i></p>
-                            </div>
+                            <div class="coinLvlupContainer">
+                                <p><i class="icon-up up3"></i></p>
                                 <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvl10text3"></p>
-                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp3"></i></p>
+                                    <p class="tooltip-text" id="goldBarLvlText"><span class="toolMultipler3" style='font-size:80%;'></span><span class="lvltext3 lvl10text3 lvl100text3 lvl1ktext3" style='color:green;'></span></p>
+                                    <button class="lvlUp3 lvlUp dropzone" id="lvlUp3" onclick="playUpgradeMoney()"></button>
+                                </div>
+                                <p><i class="icon-down down3"></i></p>
                             </div>
+                            <p class="goldBarMultiplerLvl">x1</p>
                         </div>
                     </div>
                 </div>
                 <div class="coins" id="coins">
                     <div class="frame" id="frame3">
                         <div class="moneyButtons">
-                            <p class="tooltip-text" id="text4">Bitcoin - 4$ per click</p>
-                            <button class="bitCoin money dropzone" data-level="1" id="bitCoin" title="bitCoin">B</button>
+                            <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Bitcoin</span> - <span id="text4" style='color:green;'>4$</span> per click</p>
+                            <button class="bitCoin money dropzone" data-level="1" id="bitCoin">B</button>
                         </div>
                         <p class="levels" id="lvl4">lvl 1</p>
                         <div class="upgrade">
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvltext4"></p>
-                                <p><i class="icon-angle-up lvlUp dropzone" id="lvlUp4"></i></p>
+                            <div class="coinLvlupContainer">
+                                <p><i class="icon-up up4"></i></p>
+                                <div class="cloudsLvlUps">
+                                    <p class="tooltip-text" id="bitCoinLvlText"><span class="toolMultipler4" style='font-size:80%;'></span><span class="lvltext4 lvl10text4 lvl100text4 lvl1ktext4" style='color:green;'></span></p>
+                                    <button class="lvlUp4 lvlUp dropzone" id="lvlUp4" onclick="playUpgradeMoney()"></button>
+                                </div>
+                                <p><i class="icon-down down4"></i></p>
                             </div>
-                            <div class="cloudsLvlUps">
-                                <p class="tooltip-text" id="lvl10text4"></p>
-                                <p><i class="icon-angle-double-up lvlUp dropzone" id="doubleLvlUp4"></i></p>
-                            </div>
+                            <p class="bitCoinMultiplerLvl">x1</p>
                         </div>
                     </div>
                 </div>
@@ -166,7 +186,7 @@
                 <div class="scoreContainer">
                     <div class="scoreTitle"><p>Coins:</p></div>
                     <div class="score"><p>0</p></div>
-                    <p class="infoGoldGain"></p>
+                    <div><p class="infoGoldGain"></p></div>
                 </div>
                 <div class="board">Coins per second: <span>0</span></div>
             </div>
@@ -187,8 +207,8 @@
                 <div class="material-symbols-outlined" id="clickerShadow"></div>
             </div>
             <div class="settingsPlusRight">
-                <div class="settings">Settings</div>
-                <section class="right">
+                <div class="menu">Menu</div>
+                <section class="right" id="right">
                 <div class="wallet idle" id="wallet">
                     <p class="tooltip-text"><span style="color: rgb(255, 255, 0);">Wallet</span><br> gives <span style="color:gold">+1cps</span><br>costs <span style="color:green">150$</span></p>
                 </div>
